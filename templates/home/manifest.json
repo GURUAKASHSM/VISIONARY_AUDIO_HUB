@@ -1,0 +1,20 @@
+{
+    "short_name": "VISIONARY AUDIO HUB",
+    "name": "IAMGE TO TEST GENERATION",
+    "icons": [
+      {
+        "src": "assests/icon.png",
+        "type": "image/png",
+        "sizes": "192x192"
+      },
+      {
+        "src": "assests/icon.png",
+        "type": "image/png",
+        "sizes": "512x512"
+      }
+    ],
+    "start_url": "/index.html",
+    "background_color": "#000000",
+    "display": "standalone",
+    "theme_color": "#ff0000"
+  }
