@@ -14,7 +14,7 @@ app = Flask(__name__)
 tess.pytesseract.tesseract_cmd = r'C:/Program Files/Tesseract-OCR/tesseract'
 
 # Configure Google API key
-GOOGLE_API_KEY = "----"
+GOOGLE_API_KEY = "AIzaSyBfq78sE-iZ8RsT_kfP93nGi51UyoiVwH8"
 genai.configure(api_key=GOOGLE_API_KEY)
 
 # Function to display markdown
@@ -43,7 +43,7 @@ def process():
         # Translate the user-provided text to the selected language
         translator = Translator()
         translated_text = translator.translate(user_text, src='en', dest=selected_language).text
-
+        print("trans--",user_text)
         # Initialize the text-to-speech engine for the selected language
         if selected_language == 'ta':
             tts = gTTS(text=translated_text, lang='ta')
