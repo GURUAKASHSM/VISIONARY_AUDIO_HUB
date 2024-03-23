@@ -14,7 +14,7 @@ app = Flask(__name__)
 tess.pytesseract.tesseract_cmd = r'C:/Program Files/Tesseract-OCR/tesseract'
 
 # Configure Google API key
-GOOGLE_API_KEY = "----"
+GOOGLE_API_KEY = "--"
 genai.configure(api_key=GOOGLE_API_KEY)
 
 # Function to display markdown
