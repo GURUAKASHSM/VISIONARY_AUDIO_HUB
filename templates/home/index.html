@@ -45,7 +45,7 @@
                 display: inline-block;
             }
 
-            
+
 
             .text-box {
                 width: 80%;
@@ -59,10 +59,6 @@
                 /* You can adjust the font size as needed */
                 height: 20%;
             }
-
-
-
-
         </style>
 
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
@@ -75,8 +71,8 @@
                 right: 20px;
                 width: 120px;
                 height: 60px;
-                background: #333;
-                box-shadow: 0 25px 35px rgba(0, 0, 0, 0.1);
+                background: rgba(0, 0, 0, 0);
+                box-shadow: 0 25px 35px rgba(0, 0, 0, 0);
                 display: flex;
                 justify-content: space-between;
                 transition: height 0.5s, width 0.5s;
@@ -95,7 +91,7 @@
                 position: relative;
                 width: 60px;
                 height: 60px;
-                background: #000;
+                background: rgba(0, 0, 0, 0);
                 display: flex;
                 align-items: center;
                 overflow: hidden;
@@ -119,9 +115,9 @@
                 min-width: 60px;
                 height: 60px;
                 overflow: hidden;
-                background: #000;
+                background: rgba(0, 0, 0, 0);
                 border-radius: 50%;
-                border: 10px solid #000;
+                border: 10px solid rgba(0, 0, 0, 0);
             }
 
             .navigation .userBx .imgBx img {
@@ -140,7 +136,7 @@
                 position: relative;
                 width: 60px;
                 height: 60px;
-                background: #000;
+                background: rgba(0, 0, 0, 0);
                 cursor: pointer;
                 display: flex;
                 justify-content: center;
@@ -154,7 +150,7 @@
                 height: 2px;
                 background: white;
                 transform: translateY(-10px);
-                box-shadow: 0 10px white;
+                box-shadow: 0 10px rgb(255, 255, 255);
                 transition: 0.5s;
             }
 
@@ -163,7 +159,7 @@
                 position: absolute;
                 width: 32px;
                 height: 2px;
-                background: white;
+                background: rgb(255, 255, 255);
                 transform: translateY(10px);
                 transition: 0.5s;
                 border-radius: 5px;
@@ -171,7 +167,7 @@
 
             .navigation.active .menuToggle::before {
                 transform: translateY(0px) rotate(45deg);
-                box-shadow: 0 0 white;
+                box-shadow: 0 0 rgb(165, 177, 207);
                 border-radius: 5px;
             }
 
@@ -186,8 +182,9 @@
                 height: calc(100% - 60px);
                 margin-top: 60px;
                 padding: 20px;
-                border-top: 1px solid rgba(0, 0, 0, 0.1);
+                border-top: 1px solid rgba(154, 156, 234, 0.1);
                 border-radius: 5px;
+                font-size: large;
             }
 
             .menu li {
@@ -198,12 +195,14 @@
                 display: flex;
                 align-items: center;
                 gap: 10px;
-                margin: 20px 0;
                 font-size: 1em;
                 text-decoration: none;
                 color: white;
+                padding: 20px;
+                background-color: #a8b3bc;
+
             }
-            
+
 
             .menu li a:hover {
                 font-size: larger;
@@ -212,6 +211,107 @@
 
             .menu li a ion-icon {
                 font-size: 1.5em;
+            }
+
+            .slidebuttons {
+                width: 33.3333%;
+                height: 50px;
+                font-family: Poppins-Medium;
+                font-stretch: 100%;
+                font-weight: 400;
+                text-transform: uppercase;
+                color: white;
+                margin: 0px;
+                border: none;
+            }
+
+            .hideborder {
+                border-top: 0px;
+                border-bottom: 0px;
+                border-left: 1px;
+                border-right: 1px;
+                border-style: solid;
+            }
+
+            .borderradiusleft {
+                border-radius: 30px 0px 0px 30px;
+                background-color: rgb(0, 208, 255);
+            }
+
+            .borderradiusright {
+                border-radius: 0px 30px 30px 0px;
+                background-color: rgb(0, 208, 255);
+            }
+
+            .btn1:hover,
+            .bnt2:hover,
+            .btn3:hover {
+                background-color: rgba(0, 0, 0, 0);
+            }
+
+            .btn3:hover {
+                background-color: rgba(0, 0, 0, 0);
+            }
+
+            input[type="file"] {
+                padding: 4px;
+                margin: -4px;
+                position: relative;
+                outline: none;
+
+                /* File Selector Button Styles */
+                &::file-selector-button {
+                    border-radius: 4px;
+                    padding: 0 16px;
+                    height: 40px;
+                    cursor: pointer;
+                    background-color: white;
+                    border: 1px solid rgba(#000, 0.16);
+                    box-shadow: 0px 1px 0px rgba(#000, 0.05);
+                    margin-right: 16px;
+                    width: 132px;
+                    color: transparent;
+
+                    @supports (-moz-appearance: none) {
+                        color: var(--primary-color);
+                    }
+
+                    &:hover {
+                        background-color: #f3f4f6;
+                    }
+
+                    &:active {
+                        background-color: #e5e7eb;
+                    }
+                }
+
+                /* Faked label styles and icon */
+                &::before {
+                    position: absolute;
+                    pointer-events: none;
+                    top: 14px;
+                    left: 16px;
+                    height: 20px;
+                    width: 20px;
+                    content: "";
+                    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%230964B0'%3E%3Cpath d='M18 15v3H6v-3H4v3c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2v-3h-2zM7 9l1.41 1.41L11 7.83V16h2V7.83l2.59 2.58L17 9l-5-5-5 5z'/%3E%3C/svg%3E");
+                }
+
+                &::after {
+                    position: absolute;
+                    pointer-events: none;
+                    top: 16px;
+                    left: 40px;
+                    color: var(--primary-color);
+                    content: "Upload File";
+                }
+
+                /* Handle Component Focus */
+                &:focus-within::file-selector-button,
+                &:focus::file-selector-button {
+                    outline: 2px solid var(--primary-color);
+                    outline-offset: 2px;
+                }
             }
         </style>
         <meta charset="UTF-8">
@@ -268,116 +368,168 @@
         };
     </script>
 
-<div class="limiter">
-    <div class="container-login100" style="background-image: url('images/bg-01.jpg');">
-        <div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54">
-    <div class="hub-container" style="display: block;margin-top: 120px;">
-        <form id="content" action="https://192.168.0.103:5000/process" method="POST" enctype="multipart/form-data" class="login100-form validate-form">
-            <span class="login100-form-title p-b-49" style="margin-top: -100px;padding-top: 0px;">
-                VISIONARY AUDIO HUB
-            </span>
-            <input type="file" name="image" accept=".png, .jpg, .jpeg" style="width: 80%;margin-bottom: 10px;height: 65px;padding: 20px;border:#000;border: solid 1px;padding-bottom: 40px;background-color:white;" id="inputimage">
-            
-            <textarea class="text-box" name="user_text" rows="5" cols="50" placeholder="Enter text..."></textarea>
+    <div class="limiter">
+        <div class="container-login100" style="background-image: url('images/bg-01.jpg');">
+            <div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54" style="margin-top: 100px;">
+                <div class="hub-container" style="display: block;margin-top: 120px;">
+                    <span class="login100-form-title p-b-49" style="margin-top: -120px;padding-top: 0px;">
+                        VISIONARY AUDIO HUB
+                    </span>
+                    <div class="container-login100-form-btn" style="margin-bottom: 30px;">
+                        <div class="wrap-login100-form-btn">
+                            <div class="login100-form-bgbtn"></div>
+                            <button class="slidebuttons borderradiusleft btn1"
+                                onclick="ChangeInputType('text')">TEXT</button><button
+                                class="slidebuttons hideborder btn2"
+                                onclick="ChangeInputType('image')">IMAGE</button><button
+                                class="slidebuttons borderradiusright btn3"
+                                onclick="ChangeInputType('pdf')">PDF</button>
+                        </div>
+                    </div>
+                    <form id="content" action="https://192.168.0.103:5000/process" method="POST"
+                        enctype="multipart/form-data" class="login100-form validate-form">
 
-            <h5 style="padding-right: 70%;padding-bottom: 20px;padding-top: 10px;">Language:</h5>
-            <!-- Language Selection Radio Buttons -->
-            <input class="language-radio" type="radio" id="tamil" name="language" value="ta">
-            <label class="language-label" for="tamil">Tamil</label>
+                        <div class="input-area">
+                            <input type="file" name="image" accept=".png, .jpg, .jpeg"
+                                style="margin: 10px;margin-bottom: 20px;background-color: #c6ccd175;border-radius: 10px;padding: 5px;"
+                                id="inputimage">
+                        </div>
 
-            <input class="language-radio" type="radio" id="english" name="language" value="en" checked>
-            <label class="language-label" for="english">English</label>
 
-            <input class="language-radio" type="radio" id="hindi" name="language" value="hi">
-            <label class="language-label" for="hindi">Hindi</label>
+                        <!-- Input field for PDF -->
 
-            <br>
-            <br>
 
-            <div class="container-login100-form-btn">
-                <div class="wrap-login100-form-btn">
-                    <div class="login100-form-bgbtn"></div>
-                    <button class="login100-form-btn" type="submit" value="Convert">
-                        Convert
-                    </button>
+
+                        <!-- Textarea for user-provided text -->
+
+
+                        <h5 style="padding-right: 70%;padding-bottom: 20px;padding-top: 10px;">Language:</h5>
+                        <!-- Language Selection Radio Buttons -->
+                        <input class="language-radio" type="radio" id="tamil" name="language" value="ta">
+                        <label class="language-label" for="tamil">Tamil</label>
+
+                        <input class="language-radio" type="radio" id="english" name="language" value="en" checked>
+                        <label class="language-label" for="english">English</label>
+
+                        <input class="language-radio" type="radio" id="hindi" name="language" value="hi">
+                        <label class="language-label" for="hindi">Hindi</label>
+
+                        <br>
+                        <br>
+
+                        <div class="container-login100-form-btn">
+                            <div class="wrap-login100-form-btn">
+                                <div class="login100-form-bgbtn"></div>
+                                <button class="login100-form-btn" type="submit" value="Convert">
+                                    Convert
+                                </button>
+                            </div>
+                        </div>
+                        <!-- <input type="submit" value="Convert"> -->
+                    </form>
+
+
+                    <div class="drag-drop-area" ondrop="handleDrop(event)" ondragover="handleDragOver(event)"
+                        ondragleave="handleDragLeave(event)">
+                        <p>Drag and drop files here to upload</p>
+                    </div>
                 </div>
-            </div>
-            <!-- <input type="submit" value="Convert"> -->
-        </form>
+                <script>
+                    function ChangeInputType(type) {
+                        if (type == "text") {
+                            document.querySelector('.input-area').innerHTML = `<textarea class="text-box" name="user_text" rows="5" cols="50"
+            placeholder="Enter text..."></textarea>`
+                            ApplyBackgroundColorTransition('.btn1', 'rgba(0, 0, 0, 0)');
+                            ApplyBackgroundColorTransition('.btn2', 'rgb(0, 208, 255)');
+                            ApplyBackgroundColorTransition('.btn3', 'rgb(0, 208, 255)');
+                        } else if (type == "pdf") {
+                            document.querySelector('.input-area').innerHTML = `<input type="file" name="pdf" accept=".pdf"  style="margin: 10px;margin-bottom: 20px;background-color: #c6ccd175;border-radius: 10px;padding: 5px;" id="inputpdf">`
+                            ApplyBackgroundColorTransition('.btn3', 'rgba(0, 0, 0, 0)');
+                            ApplyBackgroundColorTransition('.btn2', 'rgb(0, 208, 255)');
+                            ApplyBackgroundColorTransition('.btn1', 'rgb(0, 208, 255)');
+                        } else {
+                            document.querySelector('.input-area').innerHTML = `<input type="file" name="image" accept=".png, .jpg, .jpeg"  style="margin: 10px;margin-bottom: 20px;background-color: #c6ccd175;border-radius: 10px;padding: 5px;" id="inputimage">`
+                            ApplyBackgroundColorTransition('.btn2', 'rgba(0, 0, 0, 0)');
+                            ApplyBackgroundColorTransition('.btn1', 'rgb(0, 208, 255)');
+                            ApplyBackgroundColorTransition('.btn3', 'rgb(0, 208, 255)');
+                        }
+                    }
 
-        <div class="drag-drop-area" ondrop="handleDrop(event)" ondragover="handleDragOver(event)"
-            ondragleave="handleDragLeave(event)">
-            <p>Drag and drop files here to upload</p>
-        </div>
-    </div>
-    <!-- <script>
-        function HideAll() {
-            document.querySelector(".hub-container").style.display = 'none'
-            document.querySelector(".container").style.display = 'none';
-        }
-        function DisplayHome() {
-            HideAll()
-            document.querySelector(".hub-container").style.display = 'block'
-        }
-        function Displayloginforms() {
-            HideAll()
-            document.querySelector(".container").style.display = 'block';
-        }
-        function Logout() {
-            localStorage.removeItem("userData")
-            //showToast("LogOut Successfull", "Success", 3)
-            CheckAlreadyLogin()
-            return
-        }
-        setInLocal("GURU", "guruakashsm@gmail.com")
-        function setInLocal(name, email) {
-            const userData = {
-                username: name,
-                email,
-            };
-            localStorage.setItem("userData", JSON.stringify(userData));
-        }
+                    function ApplyBackgroundColorTransition(selector, color) {
+                        const element = document.querySelector(selector);
+                        element.style.transition = 'background-color 0.5s ease';
+                        setTimeout(() => {
+                            element.style.backgroundColor = color;
+                        }, 100);
+                    }
 
-        CheckAlreadyLogin()
-        function CheckAlreadyLogin() {
-            const storedData = localStorage.getItem("userData");
-            let html = ""
-            if (storedData) {
-                const userData = JSON.parse(storedData);
-                html = `       
-                    <li>
+                </script>
+                <script>
+                    function HideAll() {
+                        document.querySelector(".hub-container").style.display = 'none'
+                        document.querySelector(".container").style.display = 'none';
+                    }
+                    function DisplayHome() {
+                        HideAll()
+                        document.querySelector(".hub-container").style.display = 'block'
+                    }
+                    function Displayloginforms() {
+                        HideAll()
+                        document.querySelector(".container").style.display = 'block';
+                    }
+                    function Logout() {
+                        localStorage.removeItem("userData")
+                        //showToast("LogOut Successfull", "Success", 3)
+                        CheckAlreadyLogin()
+                        return
+                    }
+                    setInLocal("GURU", "guruakashsm@gmail.com")
+                    function setInLocal(name, email) {
+                        const userData = {
+                            username: name,
+                            email,
+                        };
+                        localStorage.setItem("userData", JSON.stringify(userData));
+                    }
+
+                    CheckAlreadyLogin()
+                    function CheckAlreadyLogin() {
+                        const storedData = localStorage.getItem("userData");
+                        let html = ""
+                        if (storedData) {
+                            const userData = JSON.parse(storedData);
+                            html = `       
+                    <li style="color:white;">
                         <a href="#"><ion-icon name="person-outline"></ion-icon>Profile</a>
                     </li>
-                    <li>
+                    <li style="color:white;">
                         <a onclick="DisplayHome()"><ion-icon name="home-outline"></ion-icon>Home</a>
                     </li>
-                    <li>
+                    <li style="color:white;">
                         <a href="#"
                         ><ion-icon name="chatbubble-outline"></ion-icon>History</a>
                     </li>
-                    <li>
-                        <a href="#"><ion-icon name="settings-outline"></ion-icon>Settings</a>
-                    </li>
-                    <li>
-                        <a onclick="Logout()"><ion-icon name="log-out-outline"></ion-icon>Logout</a>
+
+                    <li onclick="Logout()" style="color:white;">
+                        <a ><ion-icon name="log-out-outline"></ion-icon>Logout</a>
                     </li>`
-            } else {
-                html = `         
+                        } else {
+                            html = `         
                      <li>
                         <a onclick="Displayloginforms()"><ion-icon name="person-outline"></ion-icon>Sign In/Up</a>
                     </li>
                     <li>
                         <a onclick="DisplayHome()"><ion-icon name="home-outline"></ion-icon>Home</a>
                     </li> `
-                document.querySelector(".menu").style.maxHeight = "100px";
-                document.querySelector(".menu").style.height = "100px";
+                            document.querySelector(".menu").style.maxHeight = "100px";
+                            document.querySelector(".menu").style.height = "100px";
 
-            }
+                        }
 
-            document.querySelector(".menu").innerHTML = html;
-        }
-
-
+                        document.querySelector(".menu").innerHTML = html;
+                    }
+                </script>
+                <!--
         const sellerForm = document.getElementById('content');
         sellerForm.addEventListener('submit', (e) => {
             e.preventDefault();
