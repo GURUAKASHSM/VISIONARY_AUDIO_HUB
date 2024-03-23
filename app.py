@@ -14,7 +14,7 @@ app = Flask(__name__)
 tess.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract'
 
 # Configure Google API key
-GOOGLE_API_KEY = "<---Your Api Key here -- >"
+GOOGLE_API_KEY = "<API HERE>"
 genai.configure(api_key=GOOGLE_API_KEY)
 
 # Function to display markdown
@@ -115,11 +115,11 @@ def process():
                                audio_path_gemini=audio_path_gemini, 
                                audio_path_tesseract=audio_path_tesseract)
 
-
-
+# Serve static files over HTTPS
 @app.route('/uploads/<filename>')
 def uploaded_file(filename):
     return send_from_directory('uploads', filename)
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000)
+    # Run the Flask app with HTTPS support
+    app.run(ssl_context=('cert.pem', 'key.pem'), host='0.0.0.0', port=5000)
