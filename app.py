@@ -11,10 +11,10 @@ import google.generativeai as genai
 app = Flask(__name__)
 
 # Set the Tesseract-OCR path
-tess.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract'
+tess.pytesseract.tesseract_cmd = r'C:/Program Files/Tesseract-OCR/tesseract'
 
 # Configure Google API key
-GOOGLE_API_KEY = "<API HERE>"
+GOOGLE_API_KEY = "----"
 genai.configure(api_key=GOOGLE_API_KEY)
 
 # Function to display markdown
