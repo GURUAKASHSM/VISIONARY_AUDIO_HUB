@@ -339,6 +339,80 @@
             .date {
                 background-color: #ccc
             }
+
+            /* Toast container styles */
+            /* Toast container styles */
+            .toast-container {
+                position: fixed;
+                top: 70px;
+                right: 10px;
+                background-color: #333;
+                color: #fff;
+                padding: 5px;
+                border-radius: 5px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+                display: block;
+                align-items: center;
+                width: 500px;
+                height: 50px;
+                max-width: 900px;
+                /* Adjust the max-width as needed */
+            }
+
+            /* Icon styles */
+            .js-toast-img {
+                margin-right: 10px;
+                /* Adjust the margin as needed */
+                height: 35px;
+                width: 35px;
+                align-items: center;
+
+            }
+
+            /* Toast title styles */
+            .js-toast-title {
+                font-weight: bold;
+                font-size: 17px;
+                margin-right: 15px;
+                align-items: center;
+            }
+
+            /* Toast content styles */
+            .js-toast-content {
+                margin-top: 5px;
+                /* Adjust the margin as needed */
+                margin-right: 15px;
+                align-items: center;
+                font-size: 15px;
+            }
+
+            /* Close icon styles (assuming close icon is present) */
+            .js-icon-close {
+                cursor: pointer;
+                margin-left: auto;
+                align-items: center;
+            }
+
+            /* Add more styles as needed */
+            .toast-container.danger-color {
+                background-color: #ff6347;
+                /* Tomato color for danger */
+            }
+
+            .toast-container.info-color {
+                background-color: #87ceeb;
+                /* SkyBlue color for info */
+            }
+
+            .toast-container.warning-color {
+                background-color: #ffd700;
+                /* Gold color for warning */
+            }
+
+            .toast-container.success-color {
+                background-color: #32cd32;
+                /* LimeGreen color for success */
+            }
         </style>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -490,24 +564,33 @@
                         <div class="card p-4">
                             <div class=" image d-flex flex-column justify-content-center align-items-center"> <button
                                     class="btn btn-secondary"> <img src="https://i.imgur.com/wvxPV9S.png" height="100"
-                                        width="100" /></button> <span class="name mt-3" style="padding: 10px;padding-top: 0px;">Guru</span> <span
-                                    class="idd" style="padding: 10px;padding-top: 0px;">guruakashsm@gmail.com</span>
+                                        width="100" /></button> <span class="name mt-3"
+                                    style="padding: 10px;padding-top: 0px;">Guru</span> <span class="idd"
+                                    style="padding: 10px;padding-top: 0px;">guruakashsm@gmail.com</span>
                                 <div class="d-flex flex-row justify-content-center align-items-center gap-2"> <span
                                         class="idd1">9500807885</span> <span><i class="fa fa-copy"></i></span>
                                 </div>
 
-                                <div style="margin-top: 10px;background-color: #d6dfe887;padding: 50px;border-radius: 10px;line-height: 30px;">
-                                    <h9><span style="font-weight: bold;">Text Conversion</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : &nbsp; 1</h9>
+                                <div
+                                    style="margin-top: 10px;background-color: #d6dfe887;padding: 50px;border-radius: 10px;line-height: 30px;">
+                                    <h9><span style="font-weight: bold;">Text Conversion</span>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : &nbsp; 1</h9>
                                     <br>
-                                    <h9><span style="font-weight: bold;">Image Conversion</span>&nbsp; :  &nbsp; 1</h9>
+                                    <h9><span style="font-weight: bold;">Image Conversion</span>&nbsp; : &nbsp; 1</h9>
                                     <br>
-                                    <h9><span style="font-weight: bold;">PDF Conversion</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : &nbsp; 1</h9>
+                                    <h9><span style="font-weight: bold;">PDF Conversion</span>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : &nbsp; 1</h9>
                                     <br>
-                                    <h9><span style="font-weight: bold;">Text Extraction</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : &nbsp; 1</h9>
+                                    <h9><span style="font-weight: bold;">Text
+                                            Extraction</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; :
+                                        &nbsp; 1</h9>
                                     <br>
-                                    <h9><span style="font-weight: bold;">AI Used </span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : &nbsp;1</h9>
+                                    <h9><span style="font-weight: bold;">AI Used </span>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        : &nbsp;1</h9>
                                     <hr>
-                                    <h9><span style="font-weight: bolder;">Total Conversion</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : &nbsp; 1</h9>
+                                    <h9><span style="font-weight: bolder;">Total
+                                            Conversion</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : &nbsp; 1</h9>
                                 </div>
 
                                 <div class=" px-2 rounded mt-4 date "> <span class="join">Joined May,2021</span> </div>
@@ -519,7 +602,8 @@
 
                                 <div class=" d-flex mt-2"> <button class="btn1 btn-dark"
                                         style="border-radius: 5px;">FeedBack</button> </div>
-                                <div class="text mt-3" style="margin-left: 30px;"> <span style="text-align: center;">Unlock your creativity and
+                                <div class="text mt-3" style="margin-left: 30px;"> <span
+                                        style="text-align: center;">Unlock your creativity and
                                         share your thoughts!. To make a Updated future</span> </div>
                             </div>
                         </div>
@@ -534,19 +618,21 @@
                     </span>
 
                     <div class="wrap-input100 validate-input m-b-23" data-validate="Username is reauired">
-                        <span class="label-input100">Username</span>
-                        <input class="input100" type="text" name="username" placeholder="Type your username">
+                        <span class="label-input100">Email</span>
+                        <input class="input100" type="text" name="username" placeholder="Type your username"
+                            id="loginemail">
                         <span class="focus-input100" data-symbol="&#xf206;"></span>
                     </div>
 
                     <div class="wrap-input100 validate-input" data-validate="Password is required">
                         <span class="label-input100">Password</span>
-                        <input class="input100" type="password" name="pass" placeholder="Type your password">
+                        <input class="input100" type="password" name="pass" placeholder="Type your password"
+                            id="loginpassword">
                         <span class="focus-input100" data-symbol="&#xf190;"></span>
                     </div>
 
                     <div class="text-right p-t-8 p-b-31">
-                        <a href="#">
+                        <a onclick="BlockElements('forgotpassword');" style="cursor: pointer;">
                             Forgot password?
                         </a>
                     </div>
@@ -554,7 +640,7 @@
                     <div class="container-login100-form-btn">
                         <div class="wrap-login100-form-btn">
                             <div class="login100-form-bgbtn"></div>
-                            <button class="login100-form-btn">
+                            <button class="login100-form-btn" onclick="SubmitLogin(event)">
                                 Login
                             </button>
                         </div>
@@ -580,32 +666,49 @@
 
             <!--Sign Up Form-->
             <div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54" style="display: none;" id="register">
-                <form class="login100-form validate-form" style="text-align: left;">
+                <form class="login100-form validate-form signup" style="text-align: left;">
                     <span class="login100-form-title p-b-49">
                         Register
                     </span>
 
                     <div class="wrap-input100 validate-input m-b-23" data-validate="Username is reauired">
                         <span class="label-input100">Username</span>
-                        <input class="input100" type="text" name="username" placeholder="Type your username">
+                        <input class="input100" type="text" name="username" placeholder="Type your username"
+                            id="registername">
                         <span class="focus-input100" data-symbol="&#xf206;"></span>
                     </div>
 
-                    <div class="wrap-input100 validate-input m-b-23" data-validate="Username is reauired">
+                    <div class="wrap-input100 validate-input m-b-23" data-validate="Email is reauired">
                         <span class="label-input100">Email</span>
-                        <input class="input100" type="text" name="username" placeholder="Type your email">
+                        <input class="input100" type="text" name="username" placeholder="Type your email"
+                            id="registeremail">
                         <span class="focus-input100" data-symbol="&#x2709;"></span>
+                    </div>
+
+                    <div class="wrap-input100 validate-input m-b-23" data-validate="Mobile no is reauired">
+                        <span class="label-input100">Mobie No</span>
+                        <input class="input100" type="text" name="mobile" placeholder="Type your Mobile No"
+                            id="registermobileno">
+                        <span class="focus-input100" data-symbol="&#x260E;"></span>
+                    </div>
+
+                    <div class="wrap-input100 validate-input m-b-23" data-validate="Image is reauired">
+                        <span class="label-input100">Profile Pic</span>
+                        <input class="input100" type="file" name="file" id="registerimage" placeholder="Type your email"
+                            style="margin-top: 5px;">
                     </div>
 
                     <div class="wrap-input100 validate-input m-b-23" data-validate="Password is required">
                         <span class="label-input100">Password</span>
-                        <input class="input100" type="password" name="pass" placeholder="Type your password">
+                        <input class="input100" type="password" name="pass" placeholder="Type your password"
+                            id="registerpassword">
                         <span class="focus-input100" data-symbol="&#xf190;"></span>
                     </div>
 
-                    <div class="wrap-input100 validate-input " data-validate="Password is required">
+                    <div class="wrap-input100 validate-input " data-validate="Confirm Password is required">
                         <span class="label-input100">Confirm Password</span>
-                        <input class="input100" type="password" name="pass" placeholder="Type your password">
+                        <input class="input100" type="password" name="pass" placeholder="Type your password"
+                            id="registerconfirmpassword">
                         <span class="focus-input100" data-symbol="&#xf190;"></span>
                     </div>
 
@@ -615,7 +718,7 @@
                     <div class="container-login100-form-btn">
                         <div class="wrap-login100-form-btn">
                             <div class="login100-form-bgbtn"></div>
-                            <button class="login100-form-btn">
+                            <button class="login100-form-btn" type="submit">
                                 Register
                             </button>
                         </div>
@@ -639,6 +742,129 @@
                 </form>
             </div>
 
+
+            <!--OTP Verify Form-->
+            <div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54" style="display: none;" id="otpverify">
+                <form class="login100-form validate-form otp-verify" style="text-align: left;">
+                    <span class="login100-form-title p-b-49">
+                        Email Verification
+                    </span>
+
+                    <div class="wrap-input100 validate-input m-b-23" data-validate="OTP is reauired">
+                        <span class="label-input100">OTP</span>
+                        <input class="input100" type="text" name="username" placeholder="Type your OTP sent to mail"
+                            id="verifyotp">
+                        <span class="focus-input100" data-symbol="&#xf206;"></span>
+                    </div>
+
+                    <div class="text-right p-t-8 p-b-31">
+                    </div>
+
+                    <div class="container-login100-form-btn">
+                        <div class="wrap-login100-form-btn">
+                            <div class="login100-form-bgbtn"></div>
+                            <button class="login100-form-btn" type="submit">
+                                Submit
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="txt1 text-center p-t-54 p-b-20" style="padding-top: 20px;">
+                    </div>
+
+                </form>
+            </div>
+
+
+            <!--Forget Password Form-->
+            <div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54" style="display: none;" id="forgotpassword">
+                <form class="login100-form validate-form forgotpassword" style="text-align: left;">
+                    <span class="login100-form-title p-b-49">
+                        Forgot Password
+                    </span>
+
+                    <div class="wrap-input100 validate-input m-b-23" data-validate="Email is required">
+                        <span class="label-input100">Email</span>
+                        <input class="input100" type="text" name="username" placeholder="Type your Email"
+                            id="forgotpasswordemail">
+                        <span class="focus-input100" data-symbol="&#xf206;"></span>
+                    </div>
+
+                    <div class="text-right p-t-8 p-b-31">
+                    </div>
+
+                    <div class="container-login100-form-btn">
+                        <div class="wrap-login100-form-btn">
+                            <div class="login100-form-bgbtn"></div>
+                            <button class="login100-form-btn" type="submit">
+                                Submit
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="txt1 text-center p-t-54 p-b-20" style="padding-top: 20px;">
+                    </div>
+
+                </form>
+            </div>
+
+            <!--Change Password Form-->
+            <div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54" style="display: none;" id="changepassword">
+                <form class="login100-form validate-form changepassword" style="text-align: left;">
+                    <span class="login100-form-title p-b-49">
+                        Update Password
+                    </span>
+
+
+                    <div class="wrap-input100 validate-input m-b-23" data-validate="OTP is reauired">
+                        <span class="label-input100">OTP</span>
+                        <input class="input100" type="text" name="username" placeholder="Type your OTP sent to mail"
+                            id="changepasswordotp">
+                        <span class="focus-input100" data-symbol="&#xf206;"></span>
+                    </div>
+
+
+                    <div class="wrap-input100 validate-input m-b-23" data-validate="Password is required">
+                        <span class="label-input100">Password</span>
+                        <input class="input100" type="password" name="pass" placeholder="Type your password"
+                            id="changepasswordpassword">
+                        <span class="focus-input100" data-symbol="&#xf190;"></span>
+                    </div>
+
+                    <div class="wrap-input100 validate-input " data-validate="Confirm Password is required">
+                        <span class="label-input100">Confirm Password</span>
+                        <input class="input100" type="password" name="pass" placeholder="Type your password"
+                            id="changepasswordconfirmpassword">
+                        <span class="focus-input100" data-symbol="&#xf190;"></span>
+                    </div>
+
+
+
+                    <div class="text-right p-t-8 p-b-31">
+                    </div>
+
+                    <div class="container-login100-form-btn">
+                        <div class="wrap-login100-form-btn">
+                            <div class="login100-form-bgbtn"></div>
+                            <button class="login100-form-btn" type="submit">
+                                Submit
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="txt1 text-center p-t-54 p-b-20" style="padding-top: 20px;">
+                    </div>
+
+                </form>
+            </div>
+
+
+        </div>
+
+        <div class="toast-container" style="display: none;">
+            <img class="js-toast-img" src="./assets/dontsee.webp" height="10px" width="10px">
+            <span class="js-toast-title"></span>
+            <span class="js-toast-content"></span>
         </div>
 
 
@@ -677,12 +903,54 @@
                 }, 100);
             }
 
-        </script>
-        <script>
+            function showToast(str, war, no) {
+                const toastContainer = document.querySelector('.toast-container');
+                const title = document.querySelector('.js-toast-title');
+                const content = document.querySelector('.js-toast-content');
+                const image = document.querySelector('.js-toast-img');
+
+                // Reset classes, width, and height
+                toastContainer.className = 'toast-container';
+                toastContainer.style.width = 'auto';
+                toastContainer.style.height = 'auto';
+
+                if (no == 0) {
+                    image.src = './images/danger.webp';
+                    toastContainer.classList.add('danger-color');
+                } else if (no == 1) {
+                    image.src = './images/info.svg';
+                    toastContainer.classList.add('info-color');
+                } else if (no == 2) {
+                    image.src = './images/warning.jpg';
+                    toastContainer.classList.add('warning-color');
+                } else if (no == 3) {
+                    image.src = './images/success.png';
+                    toastContainer.classList.add('success-color');
+                }
+                title.innerHTML = `${war}`;
+                content.innerHTML = `${str}`;
+                // Calculate and set the container width and height
+                const containerWidth = title.length + content.length + 500; // Add some padding
+                toastContainer.style.width = `${containerWidth}px`;
+                // Add transition effect
+                toastContainer.style.transition = 'all 0.5s ease-in-out';
+                toastContainer.style.display = 'block';
+                setTimeout(() => {
+                    toastContainer.style.opacity = 1;
+                }, 1);
+
+                setTimeout(() => {
+                    toastContainer.style.opacity = 0;
+                    setTimeout(() => {
+                        toastContainer.style.display = 'none';
+                    }, transitionDuration * 1000);
+                }, 3000);
+            }
+
 
             function Logout() {
                 localStorage.removeItem("userData")
-                //showToast("LogOut Successfull", "Success", 3)
+                showToast("Logout Successfull", "Success", 3)
                 CheckAlreadyLogin()
                 return
             }
@@ -694,7 +962,6 @@
                 };
                 localStorage.setItem("userData", JSON.stringify(userData));
             }
-
 
             function CheckAlreadyLogin() {
                 const storedData = localStorage.getItem("userData");
@@ -720,6 +987,10 @@
                 document.getElementById("login").style.display = 'none';
                 document.getElementById("register").style.display = 'none';
                 document.getElementById("profile").style.display = 'none';
+                document.getElementById("otpverify").style.display = 'none';
+                document.getElementById("forgotpassword").style.display = 'none';
+                document.getElementById("changepassword").style.display = 'none';
+
             }
 
             function BlockElements(id) {
@@ -730,10 +1001,310 @@
                     document.getElementById("login").style.display = 'block';
                 } else if (id == 'register') {
                     document.getElementById("register").style.display = 'block';
-                }else if (id == 'profile') {
+                } else if (id == 'profile') {
                     document.getElementById("profile").style.display = 'block';
+                } else if (id == 'otpverify') {
+                    document.getElementById("otpverify").style.display = 'block';
+                } else if (id == 'forgotpassword') {
+                    document.getElementById("forgotpassword").style.display = 'block';
+                } else if (id == 'changepassword') {
+                    document.getElementById('changepassword').style.display = 'block';
                 }
             }
+
+            function validateEmail(email) {
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                return emailRegex.test(email);
+            }
+
+            function findNumberLength(number) {
+                const numberString = number.toString();
+                const length = numberString.length;
+                return length;
+            }
+            function isUsernameValid(username) {
+                const lettersAndSpacesRegex = /^[a-zA-Z ]+$/;
+                const isValid = lettersAndSpacesRegex.test(username);
+                return isValid;
+            }
+
+
+            function SubmitLogin(event) {
+                event.preventDefault();
+                const formData = {
+                    email: (document.getElementById("loginemail").value).trim(),
+                    password: (document.getElementById("loginpassword").value).trim()
+                };
+                if (formData.email.trim() == "") {
+                    showToast("Please Enter your Email", "Info", 1);
+                    return
+                }
+                if (formData.password.trim() == "") {
+                    showToast("Please Enter your Password", "Info", 1);
+                    return
+                }
+                if (formData.password.trim().length < 6) {
+                    showToast("Password must be atleast 6 Characters", "Info", 1);
+                    return
+                }
+                if (!validateEmail(formData.email)) {
+                    showToast("Please Enter a Valid Email", "Info", 1);
+                    return
+                }
+                // Send a POST request to your Go backend
+                fetch("http://localhost:8080/login", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(formData),
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.message) {
+                            showToast(data.message, "Warning", 2);
+                        }
+                        else if (data.token) {
+                            showToast("Login Successfull", "Success", 3);
+                            CheckAlreadyLogin()
+                            setTimeout(() => {
+                                const userData = {
+                                    'token': data.token,
+                                    'username': formData.email
+                                }
+                                const jsonString = JSON.stringify(userData);
+                                localStorage.setItem('userdata', `${jsonString}`);
+                                document.getElementById("loginemail").value = '';
+                                document.getElementById("loginpassword").value = "";
+                                BlockElements('home');
+                            }, 1000);
+                        } else {
+                            event.preventDefault();
+                            showToast("Login failed. Please check your credentials.", "Danger", 0);
+                        }
+                    })
+                    .catch(error => {
+                        showToast(error.message, "Danger", 0);
+                    });
+            }
+
+
+            document.querySelector(".signup").addEventListener("submit", function (event) {
+                event.preventDefault();
+                const imageFile = document.getElementById("registerimage").files[0];
+                const imageinput = document.getElementById("registerimage");
+                if (imageinput.files.length === 0) {
+                    showToast("Please select an image", "Info", 1);
+                    return;
+                }
+                const reader = new FileReader();
+                reader.onload = function () {
+                    const base64Image = btoa(
+                        new Uint8Array(reader.result).reduce(
+                            (data, byte) => data + String.fromCharCode(byte), ''
+                        )
+                    ); // Extracting base64 data from data URL
+                    const formData = {
+                        name: document.getElementById("registername").value,
+                        email: document.getElementById("registeremail").value,
+                        phonenumber: parseInt(document.getElementById("registermobileno").value),
+                        password: document.getElementById("registerpassword").value,
+                        confirmpassword: document.getElementById("registerconfirmpassword").value,
+                        image: ("data:image/jpeg;base64," + base64Image)
+                    };
+
+                    if (formData.name.trim() === "" || formData.email.trim() === "" || formData.password.trim() === "" || formData.confirmpassword.trim() === "") {
+                        showToast("Please fill all fields before submitting", "Info", 1);
+                        return;
+                    }
+                    if (formData.password.trim().length <= 6 && formData.confirmpassword.trim().length <= 6) {
+                        showToast("Password must be greater than 6 characters", "Danger", 0);
+                        return;
+                    }
+                    if (formData.password !== formData.confirmpassword && formData.password.trim() !== "" && formData.confirmpassword.trim() !== "") {
+                        showToast("Password and Confirm Password Mismatch", "Danger", 0);
+                        return;
+                    }
+                    if (!validateEmail(formData.email)) {
+                        showToast("Please Provide a Valid Email", "Info", 1);
+                        return;
+                    }
+                    if (findNumberLength(formData.phonenumber) !== 10) {
+                        showToast("Please Provide a Valid Phone Number", "Info", 1);
+                        return;
+                    }
+                    if (!isUsernameValid(formData.name)) {
+                        showToast("Please Provide a Valid Username", "Info", 1);
+                        return;
+                    }
+                    // Send a POST request to your Go backend
+                    fetch("http://localhost:8080/register", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                        body: JSON.stringify(formData),
+                    })
+                        .then(response => response.json())
+                        .then(data => {
+                            if (data === 1) {
+                                console.log("Called verify OTP");
+                                BlockElements('otpverify');
+                            } else if (data === 0) {
+                                showToast("Error creating customer profile.", "Danger", 0);
+                            } else if (data === 2) {
+                                showToast("Email already exists", "Danger", 0);
+                            } else if (data === 3) {
+                                showToast("Password and Confirm Password defer", "Danger", 0);
+                            } else if (data === 4) {
+                                showToast("Username should only contain letters", "Danger", 0);
+                            } else if (data === 5) {
+                                showToast("Invalid Phonenumber", "Danger", 0);
+                            }
+                        })
+                        .catch(error => {
+                            // Handle errors, e.g., display an error message
+                            showToast(`Error : ${error.message}`, "Danger", 0);
+                        });
+                };
+                reader.readAsArrayBuffer(imageFile);
+            });
+
+
+            document.querySelector(".otp-verify").addEventListener("submit", (event) => {
+                event.preventDefault();
+                let otp = document.getElementById("verifyotp").value
+                if (otp === "") {
+                    showToast("Please enter the OTP", "Danger", 0);
+                    return false;
+                }
+                console.log("Returned")
+                const formData = {
+                    email: document.getElementById("registeremail").value,
+                    verification: otp,
+                };
+                fetch("http://localhost:8080/verify", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(formData),
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.message == "Wrong OTP") {
+                            showToast(`${data.message}`, "Danger", 0);
+                        } else {
+                            showToast(`${data.message}`, "Success", 3);
+                            setTimeout(() => {
+                                // Clear form fields and perform other actions
+                                document.getElementById("registername").value = '';
+                                document.getElementById("registeremail").value = '';
+                                document.getElementById("registermobileno").value = '';
+                                document.getElementById("registerpassword").value = '';
+                                document.getElementById("registerconfirmpassword").value = '';
+                                document.getElementById("verifyotp").value = '';
+                                BlockElements('login')
+                            }, 2000);
+                        }
+                    })
+                    .catch(error => {
+
+                        showToast(`Error: ${error.message}`, "Danger", 0);
+                    });
+                return false;
+            })
+
+            document.querySelector(".forgotpassword").addEventListener("submit", (event) => {
+                event.preventDefault();
+                let email = (document.getElementById("forgotpasswordemail").value).trim()
+                if (email === "") {
+                    showToast("Please enter the Email", "Danger", 0);
+                    return false;
+                }
+                if (!validateEmail(email)) {
+                    showToast("Please Provide a Valid Email", "Info", 1);
+                    return;
+                }
+                console.log("Returned")
+                const formData = {
+                    email,
+                };
+                fetch("http://localhost:8080/forgetpassword", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(formData),
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.message == "Email sent successfully") {
+                            BlockElements('changepassword');
+                        } else if (data.message) {
+                            showToast(`${data.message}`, "Danger", 0);
+                        } else if (data.error) {
+                            showToast(`${data.error}`, "Danger", 0);
+                        }
+                    })
+                    .catch(error => {
+
+                        showToast(`Error: ${error.message}`, "Danger", 0);
+                    });
+                return false;
+            })
+
+
+            document.querySelector(".changepassword").addEventListener("submit", (event) => {
+                event.preventDefault();
+                const formData = {
+                    email: (document.getElementById("forgotpasswordemail").value).trim(),
+                    verification: (document.getElementById("changepasswordotp").value).trim(),
+                    password: (document.getElementById("changepasswordpassword").value).trim(),
+                    confirmpassword: (document.getElementById("changepasswordconfirmpassword").value).trim(),
+                };
+                if (formData.email == "" || formData.verification == "" || formData.password == "" || formData.confirmpassword == "") {
+                    showToast("Please Enter all Feild", "Info", 4)
+                }
+
+                if (formData.password.trim().length <= 6 && formData.confirmpassword.trim().length <= 6) {
+                    showToast("Password must be greater than 6 characters", "Danger", 0);
+                    return;
+                }
+                if (formData.password !== formData.confirmpassword && formData.password.trim() !== "" && formData.confirmpassword.trim() !== "") {
+                    showToast("Password and Confirm Password Mismatch", "Danger", 0);
+                    return;
+                }
+
+                fetch("http://localhost:8080/passwordchange", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(formData),
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.message == "Password changed successfully") {
+                            showToast(data.message, "Success", 3)
+                            document.getElementById("forgotpasswordemail").value == ""
+                            document.querySelector(".changepassword").reset();
+                            BlockElements('login');
+                        } else if (data.message) {
+                            showToast(`${data.message}`, "Danger", 0);
+                        } else if (data.error) {
+                            showToast(`${data.error}`, "Danger", 0);
+                        }
+                    })
+                    .catch(error => {
+
+                        showToast(`Error: ${error.message}`, "Danger", 0);
+                    });
+                return false;
+            })
+
+
+
         </script>
 
 </body>
