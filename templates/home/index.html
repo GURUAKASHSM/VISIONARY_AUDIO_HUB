@@ -10,8 +10,27 @@
             navigator.serviceWorker.register('sw.js');
         };
     </script>
+<!DOCTYPE html>
+<html lang="en">
 
-    <lin rel="icon" type="image/jpg" href="templates\icon.jpg"> <!-- Added title icon -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IMAGE-SPEECH</title>
+   <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="shortcut icon" href="logo.png" type="image/x-icon">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="manifest" href="manifest.json">
+  <script>
+        //if browser support service worker
+        if('serviceWorker' in navigator) {
+          navigator.serviceWorker.register('sw.js');
+        };
+  </script>
+  
+     <lin rel="icon" type="image/jpg" href="templates\icon.jpg"> <!-- Added title icon -->
+
         <style>
             /* Set the background color to dark black */
 
