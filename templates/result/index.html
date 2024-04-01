@@ -17369,7 +17369,7 @@
                 </div>
 
                 <div class="audio-container" style="margin-left: 35px;">
-                    <audio controls style="width: 90%;">
+                    <audio controls style="width: 90%;" id="tesseractaudio">
                         <source src="{{ url_for('uploaded_file', filename='audio_speech_tesseract.mp3') }}"
                             type="audio/mpeg">
                         Your browser does not support the audio element.
@@ -17403,7 +17403,7 @@
                 </div>
 
                 <div class="audio-container" style="margin-left: 35px;">
-                    <audio controls style="width: 90%;">
+                    <audio controls style="width: 90%;" id="geminiaudio">
                         <source src="{{ url_for('uploaded_file', filename='audio_speech_gemini.mp3') }}"
                             type="audio/mpeg">
                         Your browser does not support the audio element.
@@ -17467,6 +17467,88 @@
 <script src="js/main.js"></script>
 
 <script>
+
+    function convertAudioToBase64(audioElementId, callback) {
+        const audioElement = document.getElementById(audioElementId);
+        const reader = new FileReader();
+
+        reader.onload = function (event) {
+            const base64String = btoa(event.target.result);
+            if (typeof callback === 'function') {
+                callback(base64String);
+            }
+        };
+
+        const file = audioElement.src;
+        fetch(file)
+            .then(response => response.blob())
+            .then(blob => reader.readAsBinaryString(blob));
+    }
+
+    function AddHistory() {
+        let ocrBase64, aiBase64;
+
+        // Convert OCR audio to base64
+        convertAudioToBase64("tesseractaudio", function (base64String) {
+            ocrBase64 = base64String;
+
+            // Once OCR audio is converted, convert AI audio to base64
+            convertAudioToBase64("geminiaudio", function (base64String) {
+                aiBase64 = base64String;
+                const storedData = localStorage.getItem("userdata");
+                const retrievedUserData = JSON.parse(storedData);
+                // Now both audio files are converted, construct Historydata
+                console.log(retrievedUserData)
+                const Historydata = {
+                    customerid:retrievedUserData.token,
+                    ocrtext: document.getElementById("text_tesseract").innerHTML,
+                    aitext: document.getElementById("text_gemini").innerHTML,
+                    ocraudio: ocrBase64,
+                    aiaudio: aiBase64,
+                };
+                console.log(Historydata)
+
+                fetch("http://localhost:8080/savehistory", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(formData),
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.message) {
+                            showToast(data.message, "Warning", 2);
+                        }
+                        else if (data.token) {
+                            showToast("Login Successfull", "Success", 3);
+                            CheckAlreadyLogin()
+                            setTimeout(() => {
+                                const userData = {
+                                    'token': data.token,
+                                    'username': formData.email
+                                }
+                                const jsonString = JSON.stringify(userData);
+                                localStorage.setItem('userdata', `${jsonString}`);
+                                document.getElementById("loginemail").value = '';
+                                document.getElementById("loginpassword").value = "";
+                                BlockElements('home');
+                            }, 1000);
+                        } else {
+                            event.preventDefault();
+                            showToast("Login failed. Please check your credentials.", "Danger", 0);
+                        }
+                    })
+                    .catch(error => {
+                        showToast(error.message, "Danger", 0);
+                    });
+              
+            });
+        });
+    }
+
+    AddHistory();
+
 
     (function ($) {
         "use strict";
