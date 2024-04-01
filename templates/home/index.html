@@ -10,464 +10,502 @@
             navigator.serviceWorker.register('sw.js');
         };
     </script>
-<!DOCTYPE html>
-<html lang="en">
+    <!DOCTYPE html>
+    <html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IMAGE-SPEECH</title>
-   <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <link rel="shortcut icon" href="logo.png" type="image/x-icon">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <link rel="manifest" href="manifest.json">
-  <script>
-        //if browser support service worker
-        if('serviceWorker' in navigator) {
-          navigator.serviceWorker.register('sw.js');
-        };
-  </script>
-  
-     <lin rel="icon" type="image/jpg" href="templates\icon.jpg"> <!-- Added title icon -->
-
-        <style>
-            /* Set the background color to dark black */
-
-            h1,
-            form {
-                text-align: center;
-            }
-
-
-            /* Drag and Drop area */
-            .drag-drop-area {
-                border: 2px dashed #337ab7;
-                /* Dashed blue border for the drag and drop area */
-                padding: 20px;
-                margin-top: 20px;
-                border-radius: 5px;
-                text-align: center;
-            }
-
-            .drag-drop-area p {
-                margin: 0;
-            }
-
-            /* Align labels and radio buttons horizontally */
-            .language-label {
-                display: inline-block;
-                margin-right: 10px;
-            }
-
-            .language-radio {
-                display: inline-block;
-            }
-
-
-
-            .text-box {
-                width: 80%;
-                padding: 10px;
-                border: 2px solid #337ab7;
-                border-radius: 7px;
-                background-color: #f0f0f0;
-                color: #333;
-                margin-bottom: 10px;
-                font-size: 16px;
-                /* You can adjust the font size as needed */
-                height: 20%;
-            }
-        </style>
-
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
-            integrity="sha512-XrlRqfzd7cwbTpoK3mL92Gvpr5Y6UQyKcJvX0+AexBu6BiCZPlYIWt+EifVHJyAdHb+/ZymD0w9es2NTkYq5rA=="
-            crossorigin="anonymous" referrerpolicy="no-referrer" />
-        <style>
-            .mobile-container {
-                max-width: 480px;
-                margin: auto;
-                background-color: rgba(0, 0, 0, 0);
-                height: 500px;
-                color: white;
-                border-radius: 10px;
-                overflow-x: auto;
-                /* Enable horizontal scrollbar */
-            }
-
-            .topnav {
-                overflow: hidden;
-                background-image: url("./images/bg-nav.jpg");
-                position: relative;
-                transition: all 0.5s ease;
-                white-space: nowrap;
-                /* Prevent line breaks */
-            }
-
-            .topnav #myLinks {
-                display: none;
-                animation: slideRightToLeft 0.5s ease;
-                position: absolute;
-                top: 0;
-                right: 0;
-                padding-right: 60px;
-                /* Add padding to the right */
-            }
-
-            @keyframes slideRightToLeft {
-                from {
-                    opacity: 0;
-                    transform: translateX(100%);
-                }
-
-                to {
-                    opacity: 1;
-                    transform: translateX(0%);
-                }
-            }
-
-            .topnav a {
-                color: white;
-                padding: 14px 16px;
-                text-decoration: none;
-                font-size: 17px;
-                transition: background-color 0.5s ease, color 0.5s ease;
-                display: inline-block;
-                /* Make sure the links are displayed in a row */
-            }
-
-            .topnav a.icon {
-                float: right;
-                transition: transform 0.5s ease;
-            }
-
-            .topnav a.icon.rotate {
-                transform: rotate(45deg);
-            }
-
-            .topnav a.icon.x::before {
-                content: "\f00d";
-                /* Unicode for times symbol */
-            }
-
-            .topnav:hover {
-                background-color: rgba(0, 0, 0, 0);
-                color: white;
-            }
-
-            .icon:hover {
-                color: white;
-                font-size: 18px;
-            }
-
-
-            .navicons:hover {
-                background-color: #ddd;
-                color: black;
-                border-radius: 5px;
-            }
-
-            .active {
-                background-color: rgba(0, 0, 0, 0.057);
-                color: white;
-                padding: 5px;
-            }
-
-            .slidebuttons {
-                width: 33.3333%;
-                height: 50px;
-                font-family: Poppins-Medium;
-                font-stretch: 100%;
-                font-weight: 400;
-                text-transform: uppercase;
-                color: white;
-                margin: 0px;
-                border: none;
-            }
-
-            .hideborder {
-                border-top: 0px;
-                border-bottom: 0px;
-                border-left: 1px;
-                border-right: 1px;
-                border-style: solid;
-            }
-
-            .borderradiusleft {
-                border-radius: 30px 0px 0px 30px;
-                background-color: rgb(0, 208, 255);
-            }
-
-            .borderradiusright {
-                border-radius: 0px 30px 30px 0px;
-                background-color: rgb(0, 208, 255);
-            }
-
-            .button1:hover,
-            .button2:hover,
-            .button3:hover {
-                background-color: rgba(0, 0, 0, 0);
-            }
-
-            .button3:hover {
-                background-color: rgba(0, 0, 0, 0);
-            }
-
-            input[type="file"] {
-                padding: 4px;
-                margin: -4px;
-                position: relative;
-                outline: none;
-
-                /* File Selector Button Styles */
-                &::file-selector-button {
-                    border-radius: 4px;
-                    padding: 0 16px;
-                    height: 40px;
-                    cursor: pointer;
-                    background-color: white;
-                    border: 1px solid rgba(#000, 0.16);
-                    box-shadow: 0px 1px 0px rgba(#000, 0.05);
-                    margin-right: 16px;
-                    width: 132px;
-                    color: transparent;
-
-                    @supports (-moz-appearance: none) {
-                        color: var(--primary-color);
-                    }
-
-                    &:hover {
-                        background-color: #f3f4f6;
-                    }
-
-                    &:active {
-                        background-color: #e5e7eb;
-                    }
-                }
-
-                /* Faked label styles and icon */
-                &::before {
-                    position: absolute;
-                    pointer-events: none;
-                    top: 14px;
-                    left: 16px;
-                    height: 20px;
-                    width: 20px;
-                    content: "";
-                    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%230964B0'%3E%3Cpath d='M18 15v3H6v-3H4v3c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2v-3h-2zM7 9l1.41 1.41L11 7.83V16h2V7.83l2.59 2.58L17 9l-5-5-5 5z'/%3E%3C/svg%3E");
-                }
-
-                &::after {
-                    position: absolute;
-                    pointer-events: none;
-                    top: 16px;
-                    left: 40px;
-                    color: var(--primary-color);
-                    content: "Upload File";
-                }
-
-                /* Handle Component Focus */
-                &:focus-within::file-selector-button,
-                &:focus::file-selector-button {
-                    outline: 2px solid var(--primary-color);
-                    outline-offset: 2px;
-                }
-            }
-
-            .profile-image {
-                height: 30px;
-                border-radius: 15px;
-            }
-
-            .card {
-                width: 350px;
-                background-color: #efefef;
-                border: none;
-                cursor: pointer;
-                transition: all 0.5s;
-            }
-
-            .image img {
-                transition: all 0.5s
-            }
-
-            .card:hover .image img {
-                transform: scale(1.5)
-            }
-
-            .btn {
-                height: 140px;
-                width: 140px;
-                border-radius: 50%
-            }
-
-            .name {
-                font-size: 22px;
-                font-weight: bold
-            }
-
-            .idd {
-                font-size: 14px;
-                font-weight: 600
-            }
-
-            .idd1 {
-                font-size: 12px
-            }
-
-            .number {
-                font-size: 22px;
-                font-weight: bold
-            }
-
-            .follow {
-                font-size: 12px;
-                font-weight: 500;
-                color: #444444
-            }
-
-            .btn1 {
-                height: 40px;
-                width: 150px;
-                border: none;
-                background-color: #000;
-                color: #aeaeae;
-                font-size: 15px
-            }
-
-            .text span {
-                font-size: 13px;
-                color: #545454;
-                font-weight: 500
-            }
-
-            .icons i {
-                font-size: 19px
-            }
-
-            hr .new1 {
-                border: 1px solid
-            }
-
-            .join {
-                font-size: 14px;
-                color: #a0a0a0;
-                font-weight: bold
-            }
-
-            .date {
-                background-color: #ccc
-            }
-
-            /* Toast container styles */
-            /* Toast container styles */
-            .toast-container {
-                position: fixed;
-                top: 70px;
-                right: 10px;
-                background-color: #333;
-                color: #fff;
-                padding: 5px;
-                border-radius: 5px;
-                box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-                display: block;
-                align-items: center;
-                width: 500px;
-                height: 50px;
-                max-width: 900px;
-                /* Adjust the max-width as needed */
-            }
-
-            /* Icon styles */
-            .js-toast-img {
-                margin-right: 10px;
-                /* Adjust the margin as needed */
-                height: 35px;
-                width: 35px;
-                align-items: center;
-
-            }
-
-            /* Toast title styles */
-            .js-toast-title {
-                font-weight: bold;
-                font-size: 17px;
-                margin-right: 15px;
-                align-items: center;
-            }
-
-            /* Toast content styles */
-            .js-toast-content {
-                margin-top: 5px;
-                /* Adjust the margin as needed */
-                margin-right: 15px;
-                align-items: center;
-                font-size: 15px;
-            }
-
-            /* Close icon styles (assuming close icon is present) */
-            .js-icon-close {
-                cursor: pointer;
-                margin-left: auto;
-                align-items: center;
-            }
-
-            /* Add more styles as needed */
-            .toast-container.danger-color {
-                background-color: #ff6347;
-                /* Tomato color for danger */
-            }
-
-            .toast-container.info-color {
-                background-color: #87ceeb;
-                /* SkyBlue color for info */
-            }
-
-            .toast-container.warning-color {
-                background-color: #ffd700;
-                /* Gold color for warning */
-            }
-
-            .toast-container.success-color {
-                background-color: #32cd32;
-                /* LimeGreen color for success */
-            }
-        </style>
+    <head>
         <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" type="text/css"
-            href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css">
-        <link rel="stylesheet" type="text/css"
-            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        <link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-        <!--===============================================================================================-->
-        <link rel="icon" type="image/png" href="images/icons/favicon.ico" />
-        <!--===============================================================================================-->
-        <link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
-        <!--===============================================================================================-->
-        <link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
-        <!--===============================================================================================-->
-        <link rel="stylesheet" type="text/css" href="fonts/iconic/css/material-design-iconic-font.min.css">
-        <!--===============================================================================================-->
-        <link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
-        <!--===============================================================================================-->
-        <link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css">
-        <!--===============================================================================================-->
-        <link rel="stylesheet" type="text/css" href="vendor/animsition/css/animsition.min.css">
-        <!--===============================================================================================-->
-        <link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
-        <!--===============================================================================================-->
-        <link rel="stylesheet" type="text/css" href="vendor/daterangepicker/daterangepicker.css">
-        <!--===============================================================================================-->
-        <link rel="stylesheet" type="text/css" href="css/util.css">
-        <link rel="stylesheet" type="text/css" href="css/main.css">
-        <!--===============================================================================================-->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
-            integrity="sha512-XrlRqfzd7cwbTpoK3mL92Gvpr5Y6UQyKcJvX0+AexBu6BiCZPlYIWt+EifVHJyAdHb+/ZymD0w9es2NTkYq5rA=="
-            crossorigin="anonymous" referrerpolicy="no-referrer" />
-</head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>IMAGE-SPEECH</title>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <link rel="shortcut icon" href="logo.png" type="image/x-icon">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="manifest" href="manifest.json">
+        <script>
+            //if browser support service worker
+            if ('serviceWorker' in navigator) {
+                navigator.serviceWorker.register('sw.js');
+            };
+        </script>
+
+        <lin rel="icon" type="image/jpg" href="templates\icon.jpg"> <!-- Added title icon -->
+
+            <style>
+                /* Set the background color to dark black */
+
+                h1,
+                form {
+                    text-align: center;
+                }
+
+
+                /* Drag and Drop area */
+                .drag-drop-area {
+                    border: 2px dashed #337ab7;
+                    /* Dashed blue border for the drag and drop area */
+                    padding: 20px;
+                    margin-top: 20px;
+                    border-radius: 5px;
+                    text-align: center;
+                }
+
+                .drag-drop-area p {
+                    margin: 0;
+                }
+
+                /* Align labels and radio buttons horizontally */
+                .language-label {
+                    display: inline-block;
+                    margin-right: 10px;
+                }
+
+                .language-radio {
+                    display: inline-block;
+                }
+
+
+
+                .text-box {
+                    width: 80%;
+                    padding: 10px;
+                    border: 2px solid #337ab7;
+                    border-radius: 7px;
+                    background-color: #f0f0f0;
+                    color: #333;
+                    margin-bottom: 10px;
+                    font-size: 16px;
+                    /* You can adjust the font size as needed */
+                    height: 20%;
+                }
+            </style>
+
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+                integrity="sha512-XrlRqfzd7cwbTpoK3mL92Gvpr5Y6UQyKcJvX0+AexBu6BiCZPlYIWt+EifVHJyAdHb+/ZymD0w9es2NTkYq5rA=="
+                crossorigin="anonymous" referrerpolicy="no-referrer" />
+            <style>
+                .mobile-container {
+                    max-width: 480px;
+                    margin: auto;
+                    background-color: rgba(0, 0, 0, 0);
+                    height: 500px;
+                    color: white;
+                    border-radius: 10px;
+                    overflow-x: auto;
+                    /* Enable horizontal scrollbar */
+                }
+
+                .topnav {
+                    overflow: hidden;
+                    background-image: url("./images/bg-nav.jpg");
+                    position: relative;
+                    transition: all 0.5s ease;
+                    white-space: nowrap;
+                    /* Prevent line breaks */
+                }
+
+                .topnav #myLinks {
+                    display: none;
+                    animation: slideRightToLeft 0.5s ease;
+                    position: absolute;
+                    top: 0;
+                    right: 0;
+                    padding-right: 60px;
+                    /* Add padding to the right */
+                }
+
+                @keyframes slideRightToLeft {
+                    from {
+                        opacity: 0;
+                        transform: translateX(100%);
+                    }
+
+                    to {
+                        opacity: 1;
+                        transform: translateX(0%);
+                    }
+                }
+
+                .topnav a {
+                    color: white;
+                    padding: 14px 16px;
+                    text-decoration: none;
+                    font-size: 17px;
+                    transition: background-color 0.5s ease, color 0.5s ease;
+                    display: inline-block;
+                    /* Make sure the links are displayed in a row */
+                }
+
+                .topnav a.icon {
+                    float: right;
+                    transition: transform 0.5s ease;
+                }
+
+                .topnav a.icon.rotate {
+                    transform: rotate(45deg);
+                }
+
+                .topnav a.icon.x::before {
+                    content: "\f00d";
+                    /* Unicode for times symbol */
+                }
+
+                .topnav:hover {
+                    background-color: rgba(0, 0, 0, 0);
+                    color: white;
+                }
+
+                .icon:hover {
+                    color: white;
+                    font-size: 18px;
+                }
+
+
+                .navicons:hover {
+                    background-color: #ddd;
+                    color: black;
+                    border-radius: 5px;
+                }
+
+                .active {
+                    background-color: rgba(0, 0, 0, 0.057);
+                    color: white;
+                    padding: 5px;
+                }
+
+                .slidebuttons {
+                    width: 33.3333%;
+                    height: 50px;
+                    font-family: Poppins-Medium;
+                    font-stretch: 100%;
+                    font-weight: 400;
+                    text-transform: uppercase;
+                    color: white;
+                    margin: 0px;
+                    border: none;
+                }
+
+                .hideborder {
+                    border-top: 0px;
+                    border-bottom: 0px;
+                    border-left: 1px;
+                    border-right: 1px;
+                    border-style: solid;
+                }
+
+                .borderradiusleft {
+                    border-radius: 30px 0px 0px 30px;
+                    background-color: rgb(0, 208, 255);
+                }
+
+                .borderradiusright {
+                    border-radius: 0px 30px 30px 0px;
+                    background-color: rgb(0, 208, 255);
+                }
+
+                .button1:hover,
+                .button2:hover,
+                .button3:hover {
+                    background-color: rgba(0, 0, 0, 0);
+                }
+
+                .button3:hover {
+                    background-color: rgba(0, 0, 0, 0);
+                }
+
+                input[type="file"] {
+                    padding: 4px;
+                    margin: -4px;
+                    position: relative;
+                    outline: none;
+
+                    /* File Selector Button Styles */
+                    &::file-selector-button {
+                        border-radius: 4px;
+                        padding: 0 16px;
+                        height: 40px;
+                        cursor: pointer;
+                        background-color: white;
+                        border: 1px solid rgba(#000, 0.16);
+                        box-shadow: 0px 1px 0px rgba(#000, 0.05);
+                        margin-right: 16px;
+                        width: 132px;
+                        color: transparent;
+
+                        @supports (-moz-appearance: none) {
+                            color: var(--primary-color);
+                        }
+
+                        &:hover {
+                            background-color: #f3f4f6;
+                        }
+
+                        &:active {
+                            background-color: #e5e7eb;
+                        }
+                    }
+
+                    /* Faked label styles and icon */
+                    &::before {
+                        position: absolute;
+                        pointer-events: none;
+                        top: 14px;
+                        left: 16px;
+                        height: 20px;
+                        width: 20px;
+                        content: "";
+                        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%230964B0'%3E%3Cpath d='M18 15v3H6v-3H4v3c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2v-3h-2zM7 9l1.41 1.41L11 7.83V16h2V7.83l2.59 2.58L17 9l-5-5-5 5z'/%3E%3C/svg%3E");
+                    }
+
+                    &::after {
+                        position: absolute;
+                        pointer-events: none;
+                        top: 16px;
+                        left: 40px;
+                        color: var(--primary-color);
+                        content: "Upload File";
+                    }
+
+                    /* Handle Component Focus */
+                    &:focus-within::file-selector-button,
+                    &:focus::file-selector-button {
+                        outline: 2px solid var(--primary-color);
+                        outline-offset: 2px;
+                    }
+                }
+
+                .profile-image {
+                    height: 30px;
+                    border-radius: 15px;
+                }
+
+                .card {
+                    width: 350px;
+                    background-color: #efefef;
+                    border: none;
+                    cursor: pointer;
+                    transition: all 0.5s;
+                }
+
+                .image img {
+                    transition: all 0.5s
+                }
+
+                .card:hover .image img {
+                    transform: scale(1.5)
+                }
+
+                .btn {
+                    height: 140px;
+                    width: 140px;
+                    border-radius: 50%
+                }
+
+                .name {
+                    font-size: 22px;
+                    font-weight: bold
+                }
+
+                .idd {
+                    font-size: 14px;
+                    font-weight: 600
+                }
+
+                .idd1 {
+                    font-size: 12px
+                }
+
+                .number {
+                    font-size: 22px;
+                    font-weight: bold
+                }
+
+                .follow {
+                    font-size: 12px;
+                    font-weight: 500;
+                    color: #444444
+                }
+
+                .btn1 {
+                    height: 40px;
+                    width: 150px;
+                    border: none;
+                    background-color: #000;
+                    color: #aeaeae;
+                    font-size: 15px
+                }
+
+                .text span {
+                    font-size: 13px;
+                    color: #545454;
+                    font-weight: 500
+                }
+
+                .icons i {
+                    font-size: 19px
+                }
+
+                hr .new1 {
+                    border: 1px solid
+                }
+
+                .join {
+                    font-size: 14px;
+                    color: #a0a0a0;
+                    font-weight: bold
+                }
+
+                .date {
+                    background-color: #ccc
+                }
+
+                /* Toast container styles */
+                /* Toast container styles */
+                .toast-container {
+                    position: fixed;
+                    top: 70px;
+                    right: 10px;
+                    background-color: #333;
+                    color: #fff;
+                    padding: 5px;
+                    border-radius: 5px;
+                    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+                    display: block;
+                    align-items: center;
+                    width: 500px;
+                    height: 50px;
+                    max-width: 900px;
+                    /* Adjust the max-width as needed */
+                }
+
+                /* Icon styles */
+                .js-toast-img {
+                    margin-right: 10px;
+                    /* Adjust the margin as needed */
+                    height: 35px;
+                    width: 35px;
+                    align-items: center;
+
+                }
+
+                /* Toast title styles */
+                .js-toast-title {
+                    font-weight: bold;
+                    font-size: 17px;
+                    margin-right: 15px;
+                    align-items: center;
+                }
+
+                /* Toast content styles */
+                .js-toast-content {
+                    margin-top: 5px;
+                    /* Adjust the margin as needed */
+                    margin-right: 15px;
+                    align-items: center;
+                    font-size: 15px;
+                }
+
+                /* Close icon styles (assuming close icon is present) */
+                .js-icon-close {
+                    cursor: pointer;
+                    margin-left: auto;
+                    align-items: center;
+                }
+
+                /* Add more styles as needed */
+                .toast-container.danger-color {
+                    background-color: #ff6347;
+                    /* Tomato color for danger */
+                }
+
+                .toast-container.info-color {
+                    background-color: #87ceeb;
+                    /* SkyBlue color for info */
+                }
+
+                .toast-container.warning-color {
+                    background-color: #ffd700;
+                    /* Gold color for warning */
+                }
+
+                .toast-container.success-color {
+                    background-color: #32cd32;
+                    /* LimeGreen color for success */
+                }
+
+
+                .overlay {
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    background-color: rgba(0, 0, 0, 0.5);
+                    /* semi-transparent black */
+                    z-index: 1000;
+                    /* higher than other content */
+                }
+
+                .processing-image {
+                    position: fixed;
+                    top: 50%;
+                    left: 51%;
+                    transform: translate(-50%, -50%);
+                    background-color: transparent;
+                    padding: 20px;
+                    border-radius: 10px;
+                    z-index: 1200;
+                    height: 230px;
+                    width: 230px;
+                    /* higher than overlay */
+                }
+
+                .container-login100-form-btn {
+                    position: relative;
+                    /* Ensure z-index works */
+                    z-index: 1;
+                    /* default z-index */
+                }
+
+                .wrap-login100 {
+                    position: relative;
+                }
+            </style>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+            <link rel="stylesheet" type="text/css"
+                href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css">
+            <link rel="stylesheet" type="text/css"
+                href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+            <link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+            <!--===============================================================================================-->
+            <link rel="icon" type="image/png" href="images/icons/favicon.ico" />
+            <!--===============================================================================================-->
+            <link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
+            <!--===============================================================================================-->
+            <link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+            <!--===============================================================================================-->
+            <link rel="stylesheet" type="text/css" href="fonts/iconic/css/material-design-iconic-font.min.css">
+            <!--===============================================================================================-->
+            <link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
+            <!--===============================================================================================-->
+            <link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css">
+            <!--===============================================================================================-->
+            <link rel="stylesheet" type="text/css" href="vendor/animsition/css/animsition.min.css">
+            <!--===============================================================================================-->
+            <link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
+            <!--===============================================================================================-->
+            <link rel="stylesheet" type="text/css" href="vendor/daterangepicker/daterangepicker.css">
+            <!--===============================================================================================-->
+            <link rel="stylesheet" type="text/css" href="css/util.css">
+            <link rel="stylesheet" type="text/css" href="css/main.css">
+            <!--===============================================================================================-->
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+                integrity="sha512-XrlRqfzd7cwbTpoK3mL92Gvpr5Y6UQyKcJvX0+AexBu6BiCZPlYIWt+EifVHJyAdHb+/ZymD0w9es2NTkYq5rA=="
+                crossorigin="anonymous" referrerpolicy="no-referrer" />
+    </head>
 
 <body>
 
@@ -528,7 +566,7 @@
                                 onclick="ChangeInputType('pdf')">PDF</button>
                         </div>
                     </div>
-                    <form id="content" action="https://192.168.0.203:5000/process" method="POST"
+                    <form id="content" action="https://192.168.171.221:5000/process" method="POST"
                         enctype="multipart/form-data" class="login100-form validate-form">
 
                         <div class="input-area">
@@ -554,14 +592,16 @@
                         <div class="container-login100-form-btn">
                             <div class="wrap-login100-form-btn">
                                 <div class="login100-form-bgbtn"></div>
-                                <button class="login100-form-btn" type="submit" value="Convert">
+                                <button class="login100-form-btn" type="submit" value="Convert" id="convertButton">
                                     Convert
                                 </button>
                             </div>
                         </div>
                         <!-- <input type="submit" value="Convert"> -->
                     </form>
-
+                    <div id="overlay" class="overlay" style="display: none;"></div>
+                    <img id="processingImage" class="processing-image" style="display: none;"
+                        src="./images/processing2.gif">
 
                     <div class="drag-drop-area" ondrop="handleDrop(event)" ondragover="handleDragOver(event)"
                         ondragleave="handleDragLeave(event)">
@@ -1321,6 +1361,33 @@
                     });
                 return false;
             })
+
+
+            document.getElementById('convertButton').addEventListener('click', function () {
+                // Show overlay and processing image
+                document.getElementById('overlay').style.display = 'block';
+                document.getElementById('processingImage').style.display = 'block';
+                const data = {
+                    resultpublished: false
+                };
+                const dataString = JSON.stringify(data);
+                localStorage.setItem('myData', dataString);
+                SettingInterval()
+            });
+
+        function SettingInterval(){
+            setInterval(() => {
+                const storedDataString = localStorage.getItem('myData');
+                const storedData = JSON.parse(storedDataString);
+                if(storedData.resultpublished){
+                    document.getElementById('overlay').style.display = 'none';
+                    document.getElementById('processingImage').style.display = 'none';
+                   // document.getElementById('content').submit(); 
+                }
+            }, 500)
+
+        }
+            
 
 
 

@@ -84,7 +84,7 @@ def process():
         # Generate text for the prompt 
         try:
             # Wrap the generation in a try-except to catch potential errors
-            response = model.generate_content(user_text + "Give response in english should not exceeds 100 words.If it is a thing tell about the time, if it is a command tell what the command will do. Tell me about the content in the text")
+            response = model.generate_content(user_text + "Give response in english should not exceeds 100 words.If it is a thing tell about the time, if it is a command tell what the command will do. Tell me about the content in the text.If question is what is your name you should say i am ai developed by technowild to assist you.You should not never disclose your name as Gimini or developed by google other things like that")
 
             # Convert the generated text to markdown format
             generated_text = to_markdown(response.text)
@@ -289,8 +289,6 @@ def process():
         print( audio_path_gemini)
         print("\n**** ---------------------------------  ****\n\n")
 
-        # Delete the uploaded image after processing (optional)
-        os.remove(image_path)
 
         print("********************************************************************************\n\n\n\n")
         return render_template('/result/index.html', 
@@ -342,7 +340,6 @@ def process():
             print(extracted_text)
             print("\n**** ------------------- ****\n\n")
 
-            os.remove(pdf_path)
 
             user_text = extracted_text
 
@@ -353,7 +350,7 @@ def process():
             # Generate text for the prompt 
             try:
                 # Wrap the generation in a try-except to catch potential errors
-                response = model.generate_content(user_text + "Give response in english should not exceeds 100 words,If it is book tell book title , short narration , author, published year,if it a slogan or quotes tell about it and author of it.")
+                response = model.generate_content(user_text + "Give response in english should not exceeds 100 words,If it is book tell book title , short narration , author, published year,if it a slogan or quotes tell about it and author of it.If question is what is your name you should say i am ai developed by technowild to assist you.You should not never disclose your name as Gimini or developed by google other things like that")
 
                 # Convert the generated text to markdown format
                 generated_text = to_markdown(response.text)
