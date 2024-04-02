@@ -41,7 +41,7 @@ type AdminPageData struct {
 	UserCount        int64 `json:"usercount" bson:"usercount"`
 	HistoryCount      int64 `json:"historycount" bson:"historycount"`
 	AI_OutputCount     int64 `json:"aicount" bson:"aicount"`
-	OCR_Count       int64 `json:"salescount" bson:"salescount"`
+	OCR_Count       int64 `json:"ocrcount" bson:"ocrcount"`
 	ImageInputCount int64 `json:"imageinputcount" bson:"imageinputcount"`
 	TextInputCount int64 `json:"textinputcount" bson:"textinputcount"`
 	PDFInputCount int64 `json:"pdfinputcount" bson:"pdfinputcount"`

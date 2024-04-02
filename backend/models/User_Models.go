@@ -12,14 +12,14 @@ type Customer struct {
 	WrongInput         int    `json:"wronginput" bson:"wronginput"`
 	VerificationString string `json:"verification" bson:"verification"`
 	BlockedUser        bool   `json:"blockeduser" bson:"blockeduser"`
-	Image              string `json:"image"bson:"image"`
-	Date               string `json : "createddate" bson"createddate"`
-	Pdfcount           int64  `json : "pdfcount" bson"pdfcount"`
-	Imagecount         int64  `json:"imagecount" bson"imagecount"`
-	Textcount          int64  `json:"textcount" bson"textcount"`
-	Totalcount         int64  `json:"totalcount" bson"totalcount"`
-	Ocrcount           int64  `json:"ocrcount" bson"ocrcount"`
-	AIcount            int64  `json:"aicount" bson"aicount"`
+	Image              string `json:"image" bson:"image"`
+	Date               string `json:"createddate" bson:"createddate"`
+	Pdfcount           int64  `json:"pdfcount" bson:"pdfcount"`
+	Imagecount         int64  `json:"imagecount" bson:"imagecount"`
+	Textcount          int64  `json:"textcount" bson:"textcount"`
+	Totalcount         int64  `json:"totalcount" bson:"totalcount"`
+	Ocrcount           int64  `json:"ocrcount" bson:"ocrcount"`
+	AIcount            int64  `json:"aicount" bson:"aicount"`
 }
 
 // Customer Login

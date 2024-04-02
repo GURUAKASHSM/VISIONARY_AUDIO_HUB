@@ -28,7 +28,41 @@
                 navigator.serviceWorker.register('sw.js');
             };
         </script>
+        <link href="https://netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+        <style type="text/css">
+            #store-list img {
+                width: 100%;
+                height: 170px;
+                margin-bottom: 7px;
+            }
 
+            #store-list h4.title-store a:hover {
+                -webkit-transition: all 1s ease;
+                -moz-transition: all 1s ease;
+                -ms-transition: all 1s ease;
+                -o-transition: all 1s ease;
+                transition: all 1s ease;
+                color: #f1c40f;
+            }
+
+            #store-list h4.title-store a {
+                color: #f39c12;
+            }
+
+
+            .btn.btn-default {
+                border-color: #bdc3c7;
+                background-color: #bdc3c7;
+                border: 1px solid #bdc3c7;
+            }
+
+
+            .btn.btn-warning {
+                border-color: #f1c40f;
+                background-color: #f1c40f;
+                border: 1px solid #f1c40f;
+            }
+        </style>
         <lin rel="icon" type="image/jpg" href="templates\icon.jpg"> <!-- Added title icon -->
 
             <style>
@@ -58,6 +92,8 @@
                 .language-label {
                     display: inline-block;
                     margin-right: 10px;
+                    font-size: 14px;
+                    margin-left: 5px;
                 }
 
                 .language-radio {
@@ -182,6 +218,7 @@
                     text-transform: uppercase;
                     color: white;
                     margin: 0px;
+                    font-size: 15px;
                     border: none;
                 }
 
@@ -471,6 +508,8 @@
                     position: relative;
                 }
             </style>
+            <link rel="stylesheet"
+                href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1">
             <link rel="stylesheet" type="text/css"
@@ -571,7 +610,7 @@
 
                         <div class="input-area">
                             <input type="file" name="image" accept=".png, .jpg, .jpeg"
-                                style="margin: 10px;margin-bottom: 20px;background-color: #c6ccd175;border-radius: 10px;padding: 5px;"
+                                style="margin: 10px;margin-bottom: 20px;background-color: #c6ccd175;border-radius: 10px;padding: 5px;width: 95%;height: 50px;font-size: 14px;"
                                 id="inputimage">
                         </div>
                         <!-- Textarea for user-provided text -->
@@ -588,7 +627,8 @@
 
                         <br>
                         <br>
-
+                        <textarea class="text-box" name="token" rows="5" cols="50" id="token"
+                            placeholder="Enter text..." style="display: none;"></textarea>
                         <div class="container-login100-form-btn">
                             <div class="wrap-login100-form-btn">
                                 <div class="login100-form-bgbtn"></div>
@@ -918,6 +958,90 @@
             </div>
 
 
+            <div class="history" style="display: none;" id="history">
+                <div class="row bootstrap snippets bootdeys" id="store-list">
+
+                </div>
+            </div>
+
+
+            <div class="limiter">
+                <div class="container-login100"
+                    style="background-image: url('https://gardanasional.com/images/background/bg-01.jpg');display: flex;flex-direction: column;">
+                    <div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54"
+                        style="margin-bottom: 30px;width: 380px;padding: 10px;padding-top: 40px;padding-bottom: 40px;">
+                        <form class="login100-form validate-form">
+                            <span class="login100-form-title p-b-30" style="margin-top: -10px;">
+                                Extracted Text
+                            </span>
+            
+                            <div class="text-box" style="width: 95%;margin-left: 10px;">
+                                <span class="copy-icon" onclick="copyText('text_tesseract')"><i class="fa fa-clone"
+                                        style="color: black;margin-left: 250px;font-size: 15px"></i></span>
+                                <p style="font-size: 18px;color: #000;" id="text_tesseract">{{ text_tesseract }}</p>
+            
+                            </div>
+            
+                            <div class="audio-container" style="margin-left: 35px;">
+                                <audio controls style="width: 90%;" id="tesseractaudio">
+                                    <source src="{{ url_for('uploaded_file', filename='audio_speech_tesseract.mp3') }}"
+                                        type="audio/mpeg">
+                                    Your browser does not support the audio element.
+                                </audio>
+                            </div>
+            
+                            <div class="container-login100-form-btn" style="margin-top: 10px;">
+                                <div class="wrap-login100-form-btn">
+                                    <div class="login100-form-bgbtn"></div>
+                                    <button class="login100-form-btn"
+                                        href="{{ url_for('uploaded_file', filename='audio_speech_tesseract.mp3') }}"
+                                        download="audio_speech_tesseract.mp3">
+                                        Download
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <p style="display: none;" id="token">{{ token }}</p>
+                    <p style="display: none;" id="type">{{ type }}</p>
+                    <p style="display: none;" id="file">{{ file }}</p>
+                    <div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54"
+                        style="width: 380px;padding: 10px;padding-top: 40px;padding-bottom: 40px;">
+                        <form class="login100-form validate-form">
+                            <span class="login100-form-title p-b-30" style="margin-top: -10px;">
+                                AI Output
+                            </span>
+                          
+                            <div class="text-box" style="width: 95%;margin-left: 10px;">
+                                <span class="copy-icon" onclick="copyText('text_gemini')"><i class="fa fa-clone"
+                                        style="color: black;margin-left: 250px;font-size: 15px;"></i></span>
+                                <p style="font-size: 18px;color: black;" id="text_gemini">{{ text_gemini }}</p>
+                            </div>
+            
+                            <div class="audio-container" style="margin-left: 35px;">
+                                <audio controls style="width: 90%;" id="geminiaudio">
+                                    <source src="{{ url_for('uploaded_file', filename='audio_speech_gemini.mp3') }}"
+                                        type="audio/mpeg">
+                                    Your browser does not support the audio element.
+                                </audio>
+                            </div>
+            
+                            <div class="container-login100-form-btn" style="margin-top: 10px;">
+                                <div class="wrap-login100-form-btn">
+                                    <div class="login100-form-bgbtn"></div>
+                                    <button class="login100-form-btn"
+                                        href="{{ url_for('uploaded_file', filename='audio_speech_gemini.mp3') }}"
+                                        download="audio_speech_gemini.mp3">
+                                        Download
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+
         </div>
 
         <div class="toast-container" style="display: none;">
@@ -942,12 +1066,12 @@
                     ApplyBackgroundColorTransition('.button2', 'rgb(0, 208, 255)');
                     ApplyBackgroundColorTransition('.button3', 'rgb(0, 208, 255)');
                 } else if (type == "pdf") {
-                    document.querySelector('.input-area').innerHTML = `<input type="file" name="pdf" accept=".pdf"  style="margin: 10px;margin-bottom: 20px;background-color: #c6ccd175;border-radius: 10px;padding: 5px;" id="inputpdf">`
+                    document.querySelector('.input-area').innerHTML = `<input type="file" name="pdf" accept=".pdf"  style="margin: 10px;margin-bottom: 20px;background-color: #c6ccd175;border-radius: 10px;padding: 5px;width: 95%;height: 50px;font-size: 14px;" id="inputpdf">`
                     ApplyBackgroundColorTransition('.button3', 'rgba(0, 0, 0, 0)');
                     ApplyBackgroundColorTransition('.button2', 'rgb(0, 208, 255)');
                     ApplyBackgroundColorTransition('.button1', 'rgb(0, 208, 255)');
                 } else {
-                    document.querySelector('.input-area').innerHTML = `<input type="file" name="image" accept=".png, .jpg, .jpeg"  style="margin: 10px;margin-bottom: 20px;background-color: #c6ccd175;border-radius: 10px;padding: 5px;" id="inputimage">`
+                    document.querySelector('.input-area').innerHTML = `<input type="file" name="image" accept=".png, .jpg, .jpeg"  style="margin: 10px;margin-bottom: 20px;background-color: #c6ccd175;border-radius: 10px;padding: 5px;width: 95%;height: 50px;font-size: 14px;" id="inputimage">`
                     ApplyBackgroundColorTransition('.button2', 'rgba(0, 0, 0, 0)');
                     ApplyBackgroundColorTransition('.button1', 'rgb(0, 208, 255)');
                     ApplyBackgroundColorTransition('.button3', 'rgb(0, 208, 255)');
@@ -1008,37 +1132,65 @@
 
 
             function Logout() {
-                localStorage.removeItem("userData")
+                localStorage.removeItem("userdata")
                 showToast("Logout Successfull", "Success", 3)
                 CheckAlreadyLogin()
                 return
             }
-            setInLocal("GURU", "guruakashsm@gmail.com")
-            function setInLocal(name, email) {
-                const userData = {
-                    username: name,
-                    email,
-                };
-                localStorage.setItem("userData", JSON.stringify(userData));
-            }
 
+            function SystemLogout() {
+                localStorage.removeItem("userdata")
+                return
+            }
+            setInterval(() => {
+                CheckAlreadyLogin()
+            }, 10000)
+            CheckAlreadyLogin()
             function CheckAlreadyLogin() {
-                const storedData = localStorage.getItem("userData");
-                let html = ""
+                const storedData = localStorage.getItem("userdata");
                 if (storedData) {
                     const userData = JSON.parse(storedData);
-                    html = `       
+                    const token = {
+                        token: userData.token
+                    }
+
+                    fetch("http://localhost:8080/tokenvalidity", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                        body: JSON.stringify(token),
+                    })
+                        .then(response => response.json())
+                        .then(data => {
+                            let html = ""
+                            if (data.message) {
+                                document.getElementById("token").value = token.token;
+                                html = `       
                             <a onclick="BlockElements('home')" class="navicons" style="font-size: 14px;padding-right: 5px;padding-left: 5px;padding-bottom: 17px;padding-top: 17px;cursor:pointer;"><ion-icon class="fa fa-home" style="padding: 5px;"></ion-icon>Home</a>
-                            <a onclick="BlockElements('history')" class="navicons" style="font-size: 14px;padding-right: 5px;padding-left: 5px;padding-bottom: 17px;padding-top: 17px;cursor:pointer;"><ion-icon class="fa fa-history" style="padding: 5px;"></ion-icon>History</a>
+                            <a onclick="DisplayHistory()" class="navicons" style="font-size: 14px;padding-right: 5px;padding-left: 5px;padding-bottom: 17px;padding-top: 17px;cursor:pointer;"><ion-icon class="fa fa-history" style="padding: 5px;"></ion-icon>History</a>
                             <a onclick="Logout();" class="navicons" style="font-size: 14px;padding-right: 5px;padding-left: 5px;margin-right: -20px;padding-bottom: 17px;padding-top: 17px;cursor:pointer;"><ion-icon class="fa fa-sign-out" style="padding: 5px;"></ion-icon>Logout</a>`
+                            } else {
+                                html = `         
+                            <a onclick="BlockElements('home')" class="navicons" style="font-size: 14px;padding-right: 5px;padding-left: 5px;padding-bottom: 17px;padding-top: 17px;cursor:pointer;"><ion-icon class="fa fa-home" style="padding: 5px;"></ion-icon>Home</a>
+                             <a onclick="BlockElements('register')" class="navicons" style="font-size: 14px;padding-right: 5px;padding-left: 5px;padding-bottom: 17px;padding-top: 17px;cursor:pointer;"><ion-icon class="fa fa-user-plus" style="padding: 5px;"></ion-icon>Sign UP</a>
+                             <a onclick="BlockElements('login')" class="navicons" style="font-size: 14px;padding-right: 5px;padding-left: 5px;padding-bottom: 17px;padding-top: 17px;cursor:pointer;"><ion-icon class="fa fa-sign-in" style="padding: 5px;"></ion-icon>Sign IN</a>`
+                                SystemLogout()
+                            }
+                            document.getElementById("myLinks").innerHTML = html;
+                        })
+                        .catch(error => {
+                            showToast(error.message, "Danger", 0);
+                        });
                 } else {
+                    let html = ""
                     html = `         
                             <a onclick="BlockElements('home')" class="navicons" style="font-size: 14px;padding-right: 5px;padding-left: 5px;padding-bottom: 17px;padding-top: 17px;cursor:pointer;"><ion-icon class="fa fa-home" style="padding: 5px;"></ion-icon>Home</a>
                              <a onclick="BlockElements('register')" class="navicons" style="font-size: 14px;padding-right: 5px;padding-left: 5px;padding-bottom: 17px;padding-top: 17px;cursor:pointer;"><ion-icon class="fa fa-user-plus" style="padding: 5px;"></ion-icon>Sign UP</a>
                              <a onclick="BlockElements('login')" class="navicons" style="font-size: 14px;padding-right: 5px;padding-left: 5px;padding-bottom: 17px;padding-top: 17px;cursor:pointer;"><ion-icon class="fa fa-sign-in" style="padding: 5px;"></ion-icon>Sign IN</a>`
+                    document.getElementById("myLinks").innerHTML = html;
                 }
 
-                document.getElementById("myLinks").innerHTML = html;
             }
 
             function HideAll() {
@@ -1049,6 +1201,7 @@
                 document.getElementById("otpverify").style.display = 'none';
                 document.getElementById("forgotpassword").style.display = 'none';
                 document.getElementById("changepassword").style.display = 'none';
+                document.getElementById("history").style.display = 'none';
 
             }
 
@@ -1068,7 +1221,172 @@
                     document.getElementById("forgotpassword").style.display = 'block';
                 } else if (id == 'changepassword') {
                     document.getElementById('changepassword').style.display = 'block';
+                } else if (id == 'history') {
+                    document.getElementById('history').style.display = 'block';
+
                 }
+            }
+
+            function DisplayHistory() {
+                const storedData = localStorage.getItem("userdata");
+                if (storedData) {
+                    const userData = JSON.parse(storedData);
+                    const token = {
+                        token: userData.token
+                    }
+
+                    fetch("http://localhost:8080/listhistory", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                        body: JSON.stringify(token),
+                    })
+                        .then(response => response.json())
+                        .then(data => {
+                            document.getElementById("store-list").innerHTML = `<img src="./images/empty-unscreen.gif" alt="no result found" style="width:150%;height:150%;margin-top=-50px;margin-bottom:0px">
+                            <p style="text-align:center;font-size:18px;font-weight:400;color:white;margin-top:0px;padding:0px">No Data Found</p>`
+                            let html = ""
+                            if (data.message) {
+                                let html = ""
+                                data.message.forEach(element => {
+                                    if (element.type == "IMAGE") {
+                                        html += ` <div class="col-md-6 col-xs-12" style="max-width: 700px;">
+                                                <div class="panel">
+                                                    <div class="panel-body">
+                                                        <div class="row">
+                                                            <div class="col-sm-5">
+                                                                <a ><img src="data:image/png;base64,${element.file}"
+                                                                        class="img-responsive"></a>
+                                                            </div>
+                                                            <div class="col-sm-7">
+                                                                <h4 class="title-store">
+                                                                    <strong><a >${element.type}</a></strong>
+                                                                </h4>
+                                                                <hr>
+                                                                <p style="margin-bottom: 10px;">${element.aitext}</p>
+                                                                <p>
+                                                                    <a onclick="DeleteHistory('${element.historyid}');" class="btn btn-default" disabled data-original-title title
+                                                                        style="height: 30px;align-items: center;padding-top: 10px;border-radius: 5px;width: 70px;">Delete
+                                                                        &nbsp; <i class="fas fa-trash"></i> </a>
+                                                                    <a onclick="ViewHistory('${element.historyid}')" class="btn btn-warning pull-right" data-original-title title
+                                                                        style="height: 30px;align-items: center;padding-top: 10px;border-radius: 5px;width: 70px;">View
+                                                                        &nbsp; <i class="fas fa-eye"></i></a>
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>`
+                                    } else if (element.type == "PDF") {
+                                        html += ` <div class="col-md-6 col-xs-12" style="max-width: 700px;">
+                                                <div class="panel">
+                                                    <div class="panel-body">
+                                                        <div class="row">
+                                                            <div class="col-sm-5">
+                                                                <a ><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAgAAAAIACAIAAAB7GkOtAAAACXBIWXMAAAsTAAALEwEAmpwYAAAE9GlUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4gPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNy4xLWMwMDAgNzkuZWRhMmIzZmFjLCAyMDIxLzExLzE3LTE3OjIzOjE5ICAgICAgICAiPiA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPiA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtbG5zOmRjPSJodHRwOi8vcHVybC5vcmcvZGMvZWxlbWVudHMvMS4xLyIgeG1sbnM6cGhvdG9zaG9wPSJodHRwOi8vbnMuYWRvYmUuY29tL3Bob3Rvc2hvcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RFdnQ9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZUV2ZW50IyIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgMjMuMSAoTWFjaW50b3NoKSIgeG1wOkNyZWF0ZURhdGU9IjIwMjItMDItMDhUMTY6Mjk6MDktMDg6MDAiIHhtcDpNb2RpZnlEYXRlPSIyMDIyLTAyLTA4VDE2OjM0OjExLTA4OjAwIiB4bXA6TWV0YWRhdGFEYXRlPSIyMDIyLTAyLTA4VDE2OjM0OjExLTA4OjAwIiBkYzpmb3JtYXQ9ImltYWdlL3BuZyIgcGhvdG9zaG9wOkNvbG9yTW9kZT0iMyIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDo5YTQwOTI2YS1jNWU2LTRkMjgtYWNiZi1iOThjYmY5NTg1MzUiIHhtcE1NOkRvY3VtZW50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QVA0TLWAJi/ziGKh4JEPeQQVAYAgKG1oCumRda4pGgX2PQHL3TV0h64nACD4qAUEAIoiAABAUQQAACiKAAAARREAAKAoAgAAFEUAAICiCAAAUBQBAACKIgAAQFEEAAAoigAAAEURAACgKAIAABRFAACAoggAAFAUAQAAiiIAAEBRBAAAKIoAAABFEQAAoCgCAAAURQAAgKIIAABQFAEAAIoiAABAUQQAACiKAAAARREAAKAoAgAAFEUAAICiCAAAUBQBAACKIgAAQFEEAAAoigAAAEURAACgKAIAABRFAACAoggAAFAUAQAAiiIAAEBRBAAAKIoAAABFEQAAoCgCAAAURQAAgKIIAABQFAEAAIoiAABAUQQAACiKAAAARREAAKAoAgAAFEUAAICiCAAAUBQBAACKIgAAQFEEAAAoigAAAEURAACgKAIAABRFAACAoggAAFAUAQAAiiIAAEBRBAAAKIoAAABFEQAAoCgCAAAURQAAgKIIAABQFAEAAIoiAABAUQQAACiKAAAARREAAKAoAgAAFEUAAICiCAAAUBQBAACKIgAAQFEEAAAoigAAAEURAACgKAIAABRFAACAoggAAFAUAQAAivp/sKrm5TPMH1EAAAAASUVORK5CYII="
+                                                                        class="img-responsive"></a>
+                                                            </div>
+                                                            <div class="col-sm-7">
+                                                                <h4 class="title-store">
+                                                                    <strong><a>${element.type}</a></strong>
+                                                                </h4>
+                                                                <hr>
+                                                                <p style="margin-bottom: 10px;">${element.aitext}</p>
+                                                                <p>
+                                                                    <a onclick="DeleteHistory('${element.historyid}');" class="btn btn-default" disabled data-original-title title
+                                                                        style="height: 30px;align-items: center;padding-top: 10px;border-radius: 5px;width: 70px;">Delete
+                                                                        &nbsp; <i class="fas fa-trash"></i> </a>
+                                                                    <a href="#" class="btn btn-warning pull-right" data-original-title title
+                                                                        style="height: 30px;align-items: center;padding-top: 10px;border-radius: 5px;width: 70px;">View
+                                                                        &nbsp; <i class="fas fa-eye"></i></a>
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>`
+                                    }else {
+                                        html += ` <div class="col-md-6 col-xs-12" style="max-width: 700px;">
+                                                <div class="panel">
+                                                    <div class="panel-body">
+                                                        <div class="row">
+                                                            <div class="col-sm-5">
+                                                                <a ><img src="data:image/png;base64,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"
+                                                                        class="img-responsive"></a>
+                                                            </div>
+                                                            <div class="col-sm-7">
+                                                                <h4 class="title-store">
+                                                                    <strong><a >${element.type}</a></strong>
+                                                                </h4>
+                                                                <hr>
+                                                                <p style="margin-bottom: 10px;">${element.aitext}</p>
+                                                                <p>
+                                                                    <a onclick="DeleteHistory('${element.historyid}');" class="btn btn-default" disabled data-original-title title
+                                                                        style="height: 30px;align-items: center;padding-top: 10px;border-radius: 5px;width: 70px;">Delete
+                                                                        &nbsp; <i class="fas fa-trash"></i> </a>
+                                                                    <a href="#" class="btn btn-warning pull-right" data-original-title title
+                                                                        style="height: 30px;align-items: center;padding-top: 10px;border-radius: 5px;width: 70px;">View
+                                                                        &nbsp; <i class="fas fa-eye"></i></a>
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>`
+                                    }
+                                });
+                                document.getElementById("store-list").innerHTML = html
+
+                            } else if (data.error) {
+                                showToast(data.error, "Error", 0)
+                            }
+                            BlockElements('history')
+                        })
+                        .catch(error => {
+                            showToast(error.message, "Danger", 0);
+                        });
+                } else {
+                    showToast("Login to see History", "Info", 1)
+                    return
+                }
+
+            }
+
+            function DeleteHistory(id){
+                const storedData = localStorage.getItem("userdata");
+                if (storedData) {
+                    const userData = JSON.parse(storedData);
+                    const token = {
+                        token: userData.token,
+                        historyid:id
+                    }
+
+                    fetch("http://localhost:8080/deletehistory", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                        body: JSON.stringify(token),
+                    })
+                    .then(response => response.json())
+                        .then(data => {
+                            let html = ""
+                            if (data.message) {
+                                showToast(data.message,"Success",3)
+                                DisplayHistory()
+                            }else if(data.error){
+                                showToast(data.error,"Success",0)
+                            }
+                        })
+                        .catch(error => {
+                            showToast(error.message, "Danger", 0);
+                        });
+                } else {
+                    showToast("Login to delete History", "Info", 1)
+                    return
+                }
+
             }
 
             function validateEmail(email) {
@@ -1125,18 +1443,21 @@
                         }
                         else if (data.token) {
                             showToast("Login Successfull", "Success", 3);
-                            CheckAlreadyLogin()
+
                             setTimeout(() => {
                                 const userData = {
                                     'token': data.token,
                                     'username': formData.email
                                 }
+                                document.getElementById("token").value = userData.token;
                                 const jsonString = JSON.stringify(userData);
                                 localStorage.setItem('userdata', `${jsonString}`);
                                 document.getElementById("loginemail").value = '';
                                 document.getElementById("loginpassword").value = "";
                                 BlockElements('home');
+                                CheckAlreadyLogin()
                             }, 1000);
+
                         } else {
                             event.preventDefault();
                             showToast("Login failed. Please check your credentials.", "Danger", 0);
@@ -1375,19 +1696,19 @@
                 SettingInterval()
             });
 
-        function SettingInterval(){
-            setInterval(() => {
-                const storedDataString = localStorage.getItem('myData');
-                const storedData = JSON.parse(storedDataString);
-                if(storedData.resultpublished){
-                    document.getElementById('overlay').style.display = 'none';
-                    document.getElementById('processingImage').style.display = 'none';
-                   // document.getElementById('content').submit(); 
-                }
-            }, 500)
+            function SettingInterval() {
+                setInterval(() => {
+                    const storedDataString = localStorage.getItem('myData');
+                    const storedData = JSON.parse(storedDataString);
+                    if (storedData.resultpublished) {
+                        document.getElementById('overlay').style.display = 'none';
+                        document.getElementById('processingImage').style.display = 'none';
+                        // document.getElementById('content').submit(); 
+                    }
+                }, 500)
 
-        }
-            
+            }
+
 
 
 

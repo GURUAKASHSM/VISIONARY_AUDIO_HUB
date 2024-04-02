@@ -17388,14 +17388,16 @@
                 </div>
             </form>
         </div>
-
+        <p style="display: none;" id="token">{{ token }}</p>
+        <p style="display: none;" id="type">{{ type }}</p>
+        <p style="display: none;" id="file">{{ file }}</p>
         <div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54"
             style="width: 380px;padding: 10px;padding-top: 40px;padding-bottom: 40px;">
             <form class="login100-form validate-form">
                 <span class="login100-form-title p-b-30" style="margin-top: -10px;">
                     AI Output
                 </span>
-
+              
                 <div class="text-box" style="width: 95%;margin-left: 10px;">
                     <span class="copy-icon" onclick="copyText('text_gemini')"><i class="fa fa-clone"
                             style="color: black;margin-left: 250px;font-size: 15px;"></i></span>
@@ -17467,6 +17469,8 @@
 <script src="js/main.js"></script>
 
 <script>
+    let token = document.getElementById("token").innerHTML 
+    let type = document.getElementById("type").innerHTML 
 
     function convertAudioToBase64(audioElementId, callback) {
         const audioElement = document.getElementById(audioElementId);
@@ -17495,12 +17499,11 @@
             // Once OCR audio is converted, convert AI audio to base64
             convertAudioToBase64("geminiaudio", function (base64String) {
                 aiBase64 = base64String;
-                const storedData = localStorage.getItem("userdata");
-                const retrievedUserData = JSON.parse(storedData);
-                // Now both audio files are converted, construct Historydata
-                console.log(retrievedUserData)
+                
                 const Historydata = {
-                    customerid:retrievedUserData.token,
+                    type: type,
+                    file: document.getElementById("file").innerHTML,
+                    customerid:token,
                     ocrtext: document.getElementById("text_tesseract").innerHTML,
                     aitext: document.getElementById("text_gemini").innerHTML,
                     ocraudio: ocrBase64,
@@ -17513,34 +17516,16 @@
                     headers: {
                         "Content-Type": "application/json",
                     },
-                    body: JSON.stringify(formData),
+                    body: JSON.stringify(Historydata),
                 })
                     .then(response => response.json())
                     .then(data => {
                         if (data.message) {
-                            showToast(data.message, "Warning", 2);
-                        }
-                        else if (data.token) {
-                            showToast("Login Successfull", "Success", 3);
-                            CheckAlreadyLogin()
-                            setTimeout(() => {
-                                const userData = {
-                                    'token': data.token,
-                                    'username': formData.email
-                                }
-                                const jsonString = JSON.stringify(userData);
-                                localStorage.setItem('userdata', `${jsonString}`);
-                                document.getElementById("loginemail").value = '';
-                                document.getElementById("loginpassword").value = "";
-                                BlockElements('home');
-                            }, 1000);
-                        } else {
-                            event.preventDefault();
-                            showToast("Login failed. Please check your credentials.", "Danger", 0);
+                            console.log(data.message)
                         }
                     })
                     .catch(error => {
-                        showToast(error.message, "Danger", 0);
+                        console.log(error)
                     });
               
             });

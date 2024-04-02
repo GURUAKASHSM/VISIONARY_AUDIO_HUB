@@ -127,11 +127,23 @@ func EmailVerification(data models.VerifyEmail) (string, error) {
 			return "", err
 		}
 		go SendThankYouEmail(customer.Email, customer.Name)
+		go IncrementUserCount()
 		return "Signup Successful", nil
 	} else {
 		return "Wrong OTP", nil
 	}
 
+}
+
+// Incrementuser Count In SiteData DB
+func IncrementUserCount() {
+	update := bson.M{
+		"$inc": bson.M{"usercount": 1},
+	}
+	_, err := config.SiteDataCollection.UpdateOne(context.Background(), bson.M{}, update)
+	if err != nil {
+		log.Println(err)
+	}
 }
 
 // Login Customer
@@ -201,8 +213,8 @@ func ChangePassword(data models.PasswordChange) (string, error) {
 	if err != nil {
 		return "Email Not Found", err
 	}
-	if data.Password != data.ConfirmPassword{
-		return "Password Mismatch",nil
+	if data.Password != data.ConfirmPassword {
+		return "Password Mismatch", nil
 	}
 	if customer.VerificationString == data.VerificationString {
 		update := bson.M{
@@ -237,5 +249,4 @@ func UserDetails(token models.Token) (*models.Customer, string, error) {
 	}
 
 	return &customer, "success", nil
-
 }

@@ -1,7 +1,9 @@
 from flask import Flask, render_template, request, send_from_directory
-import os
-import pytesseract as tess
+import base64
+import io
 from PIL import Image
+from PyPDF2 import PdfReader
+import pytesseract as tess
 from googletrans import Translator
 from gtts import gTTS
 import textwrap
@@ -72,6 +74,12 @@ def process():
         # Handle text input
         user_text = request.form['user_text']
         selected_language = request.form.get('language')
+        
+
+        # Printing Token
+        print("****** Token *******\n")
+        token = request.form['token']
+        print("\n**** ------ ****\n\n")
 
         # Printing Selected Language
         print("*** Selected Language ***\n")
@@ -177,13 +185,21 @@ def process():
                                text_tesseract=translated_text_user, 
                                selected_language=selected_language, 
                                audio_path_gemini=audio_path_gemini, 
-                               audio_path_tesseract=audio_path_tesseract)
+                               audio_path_tesseract=audio_path_tesseract,
+                               token = token,
+                               type =  "TEXT",
+                               file = user_text)
     
     if 'image' in request.files:
         print("\n\n********************************* Processing Image ********************************* \n\n\n")
 
         # Handle image input
         image_file = request.files['image']
+    
+        # Printing Token
+        print("****** Token *******\n")
+        token = request.form['token']
+        print("\n**** ------ ****\n\n")
 
         # Save the uploaded image to the 'uploads' directory
         image_path = os.path.join('uploads', image_file.filename)
@@ -289,6 +305,7 @@ def process():
         print( audio_path_gemini)
         print("\n**** ---------------------------------  ****\n\n")
 
+        file = file_to_base64(image_path)
 
         print("********************************************************************************\n\n\n\n")
         return render_template('/result/index.html', 
@@ -296,11 +313,20 @@ def process():
                                text_tesseract=translated_text_tesseract, 
                                selected_language=selected_language, 
                                audio_path_gemini=audio_path_gemini, 
-                               audio_path_tesseract=audio_path_tesseract)
+                               audio_path_tesseract=audio_path_tesseract,
+                               token = token,
+                               type =  "IMAGE",
+                               file = file)
     
     if 'pdf' in request.files:
             print("\n\n********************************** Processing PDF ***************************************\n\n\n")
             pdf_file = request.files['pdf']
+
+            # Printing Token
+            print("****** Token *******\n")
+            token = request.form['token']
+            print("\n**** ------ ****\n\n")
+           
             if pdf_file.filename == '':
                 return "No PDF file selected"
             
@@ -431,13 +457,17 @@ def process():
             print( audio_path_gemini)
             print("\n**** ---------------------------------  ****\n\n")
 
+            file = file_to_base64(pdf_path)
             print("*********************************************************************************\n\n\n\n")
             return render_template('/result/index.html', 
                                 text_gemini=translated_text_gemini, 
                                 text_tesseract=translated_text_user, 
                                 selected_language=selected_language, 
                                 audio_path_gemini=audio_path_gemini, 
-                                audio_path_tesseract=audio_path_tesseract)
+                                audio_path_tesseract=audio_path_tesseract,
+                                token = token,
+                                type =  "PDF",
+                                file = file)
         
     else:
         print("In No Data")
@@ -472,6 +502,24 @@ def delete_files_in_uploadsfolder():
             print(f"Deleted file: {file_path}")
 
     print("\n***** -------- *****\n\n")
+
+def file_to_base64(file_path):
+    # Check file extension
+    if file_path.endswith('.pdf'):
+        # Read PDF file and encode as base64
+        with open(file_path, 'rb') as f:
+            pdf_reader = PdfReader(f)
+            pdf_content = ''
+            for page_num in range(len(pdf_reader.pages)):
+                pdf_content += pdf_reader.pages[page_num].extract_text()
+            return base64.b64encode(pdf_content.encode()).decode()
+    else:
+        # Read image file and encode as base64
+        with open(file_path, 'rb') as f:
+            img = Image.open(io.BytesIO(f.read()))
+            buffered = io.BytesIO()
+            img.save(buffered, format="PNG")
+            return base64.b64encode(buffered.getvalue()).decode()
 
 
 if __name__ == '__main__':

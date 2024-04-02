@@ -70,7 +70,7 @@ func ValidateToken(c *gin.Context) {
 		return
 	}
 	result := service.Validatetoken(userdata.Token, constants.SecretKey)
-	c.JSON(http.StatusOK, gin.H{"result": result})
+	c.JSON(http.StatusOK, gin.H{"message": result})
 }
 func ForgetPassword(c *gin.Context) {
 	var email models.ForgetPassword
@@ -115,3 +115,4 @@ func LisUserDetails(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{"result": result})
 
 }
+
